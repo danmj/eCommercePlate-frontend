@@ -43,10 +43,10 @@ export default class App extends Component {
 
 
   removeItem = (obj) => {
-    const updatedCart = this.state.cart.filter((cartObj) =>
-      cartObj.id !== obj.id
-    )
-    this.setState({ cart: updatedCart }, () => this.calculateTotal())
+    fetch(`http://localhost:3000/api/v1/cartitems/${obj.id}`, {
+      method: 'delete'
+    })
+      .then(response => response.json());
   }
 
 

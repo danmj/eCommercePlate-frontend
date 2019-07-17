@@ -25,12 +25,13 @@ export default class Cart extends Component {
          })
          setTimeout(()=>{console.log(this.state)}, 2000)
       })
+      .then(() => this.calculateTotal())
   }
 
 
   calculateTotal = () => {
     const prices = this.state.userCartItems.map((cartObj) =>
-      cartObj.price
+      (cartObj.price * cartObj.quantity)
     )
     let summedTotal = 0
     for(var i = 0; i < prices.length; i++) {
@@ -82,6 +83,9 @@ export default class Cart extends Component {
                         </th>
                         <th scope="col" className="border-0 bg-light">
                           <div className="py-2 text-uppercase">Price</div>
+                        </th>
+                        <th scope="col" class="border-0 bg-light">
+                          <div class="py-2 text-uppercase">Quantity</div>
                         </th>
                         <th scope="col" className="border-0 bg-light">
                           <div className="py-2 text-uppercase">Remove</div>
