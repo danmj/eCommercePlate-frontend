@@ -6,23 +6,29 @@ import ReactImageMagnify from 'react-image-magnify';
 
 export default class ProductView extends Component {
 
-  goBack = () => {
-    window.history.back();
+  constructor(props) {
+    super(props)
+    this.state = {
+      buttonMessage: 'Add to cart'
+    }
   }
+
 
   backClickHandler = () => {
     window.history.back()
   }
 
-  addToCartClickHandler = (obj) => {
-    this.props.addItemToCart(this.props.clickedProduct)
+  addToCartClickHandler = () => {
     // this.props.calculateTotal()
+
+    this.props.addItemToCart(this.props.clickedProduct)
+    this.setState({ buttonMessage: 'Added to cart'})
   }
 
+  quantityChangeReader = (e) => {
+    this.props.quantityChangeReader(e)
+  }
 
-  // quantityChangeReader = (e) => {
-  //   this.props.quantityChangeReader(e)
-  // }
 
   render() {
     return(
@@ -61,19 +67,19 @@ export default class ProductView extends Component {
               <p>{this.props.clickedProduct.subtitle}</p>
 
 
-              {/* <select className="custom-select" style={{ width: '260px' }} value={this.props.quantityValue} onChange={(e) => this.quantityChangeReader(e)}>
+              <select className="custom-select" style={{ width: '260px' }} value={this.props.quantityValue} onChange={(e) => this.quantityChangeReader(e)}>
                   <option value="">Select Quantity</option>
                   <option value="1">1</option>
                   <option value="2">2</option>
                   <option value="3">3</option>
                   <option value="4">4</option>
                   <option value="5">5</option>
-                </select>*/}
+                </select>
 
                 <div style={{ padding: '4px' }}>
                 </div>
 
-                <button type="button" className="btn btn-secondary" style={{ width: '260px' }} onClick={() => this.addToCartClickHandler()}>Add to cart</button>
+                <button className="btn btn-secondary" style={{ width: '260px' }} onClick={() => this.addToCartClickHandler()}>{this.state.buttonMessage}</button>
 
             </div>
 

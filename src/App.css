@@ -41,9 +41,9 @@ ion-icon {
   background-color: grey;
 }
 
-.product-card-mouseover-true {
+/* .product-card-mouseover-true {
   color: #4e555c !important;
-}
+} */
 
 /* Image zoom styling starts here */
 
@@ -135,7 +135,7 @@ a:hover {
   left: 50%;
   transform: translate(-50%, -50%);
   -ms-transform: translate(-50%, -50%);
-  background-color: #555;
+  background-color: rgba(0, 0, 0, 0.5);
   color: white;
   font-size: 16px;
   padding: 12px 24px;

@@ -17,15 +17,18 @@ export default class App extends Component {
 
   constructor(props) {
     super(props);
-    this.detailClickHandler = this.detailClickHandler.bind(this);
+    // this.detailClickHandler = this.detailClickHandler.bind(this);
     this.state = {
-      productsData: [],
-      clickedProduct: null,
-      cart: [],
-      cartTotal: 0,
-      quantityValue: "0"
+      productsData: [],           // JSON data from API
+      clickedProduct: null,       // product object of the specific clicked product
+      itemToAdd: null,            // item that is queued up to be added into the cart
+      quantity: 0,                // the selected quantity of the queued item
+      cartTotal: 0,               // sum of .price of all products currently in cart array
     };
   };
+
+  // State in other components:
+  // buttonMessage in ProductView.js, holds the text displayed on the 'buy' button in product view
 
   componentDidMount() {
     fetch('http://localhost:3000/api/v1/products/')
@@ -37,22 +40,7 @@ export default class App extends Component {
     this.setState({ clickedProduct: productObj })
   }
 
-  addItemToCart = (productObj) => {
-    this.setState({ cart: [...this.state.cart, productObj] }, () => console.log(this.state.cart) )
-  }
 
-  calculateTotal = () => {
-    const prices = this.state.cart.map((cartObj) =>
-      cartObj.price
-    )
-    let summedTotal = 0
-
-    for(var i = 0; i < prices.length; i++) {
-      summedTotal += prices[i]
-    }
-
-    this.setState({ cartTotal: summedTotal }, () => console.log(this.state.cartTotal))
-  }
 
   removeItem = (obj) => {
     const updatedCart = this.state.cart.filter((cartObj) =>
@@ -61,10 +49,43 @@ export default class App extends Component {
     this.setState({ cart: updatedCart }, () => this.calculateTotal())
   }
 
+
+  ///////// CARITEM SUBMIT STARTS HERE ///////////
+
   quantityChangeReader = (e) => {
-    this.setState({ quantityValue: e.target.value }, () => console.log(this.state.quantityValue) )
-    e.preventDefault()
+    this.setState({ quantity: e.target.value }, () => console.log(this.state.quantity))
   }
+
+  addItemToCart = (productObj) => {
+    this.setState({ itemToAdd: productObj }, () => this.postCartItem()  )     // callback function here will be postCartItem()
+  }
+
+  postCartItem = () => {
+    console.log('posting');
+
+    fetch('http://localhost:3000/api/v1/cartitems', {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json; charset=utf-8",
+        },
+        body: JSON.stringify(
+          {
+            cart_id: 1,
+            user_id: 1,
+            product_id: this.state.itemToAdd.id,
+            quantity: this.state.quantity,
+            name: this.state.itemToAdd.name,
+            price: this.state.itemToAdd.price,
+          })
+    })
+
+  }
+
+
+
+
+  ///////// CARTITEM SUBMIT ENDS HERE ///////////
+
 
   render() {
     return (

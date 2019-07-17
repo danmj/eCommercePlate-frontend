@@ -50,7 +50,7 @@ export default class NavBar extends Component {
             <ul className="navbar-nav form-inline my-2 my-lg-0">
               <li className="nav-item">
                 <NavLink to='/cart' exact>
-                  <a className="nav-link" href="#"><ion-icon name="cart" onClick={() => this.props.calculateTotal()}></ion-icon></a>
+                  <a className="nav-link" href="#"><ion-icon name="cart"></ion-icon></a>
                 </NavLink>
               </li>
             </ul>

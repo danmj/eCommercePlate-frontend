@@ -14,7 +14,7 @@ const CartItem = (props) => {
     <tr>
       <th scope="row" className="border-0">
         <div className="p-2">
-          <img src={props.cartObj.photos[1].url} alt="cart image" width="70" className="img-fluid rounded shadow-sm" />
+          {/* <img src={props.cartObj.photos[1].url} alt="cart image" width="70" className="img-fluid rounded shadow-sm" /> */}
           <div className="ml-3 d-inline-block align-middle">
             <h5 className="mb-0"> <a href="#" className="text-dark d-inline-block align-middle">{props.cartObj.name}</a></h5><span className="text-muted font-weight-normal font-italic d-block">{props.cartObj.type_id}</span>
           </div>
