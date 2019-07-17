@@ -13,14 +13,11 @@ export default class ProductView extends Component {
     }
   }
 
-
   backClickHandler = () => {
     window.history.back()
   }
 
   addToCartClickHandler = () => {
-    // this.props.calculateTotal()
-
     this.props.addItemToCart(this.props.clickedProduct)
     this.setState({ buttonMessage: 'Added to cart'})
   }
@@ -85,36 +82,33 @@ export default class ProductView extends Component {
 
           </div>
 
-          <h5 className="my-4">YOU MAY ALSO LIKE</h5>
+          {/* <h5 className="my-4">YOU MAY ALSO LIKE</h5>
           <div className="row">
             <div className="col-md-3 col-sm-6 mb-4">
               <a href="#">
-                <img className="img-fluid" src="http://placehold.it/500x300" alt="" />
+                <img className="img-fluid" src={this.props.clickedProduct.photos[1].url} alt="" style={{ width: '500px', height: '300px' }} />
               </a>
             </div>
 
             <div className="col-md-3 col-sm-6 mb-4">
               <a href="#">
-                <img className="img-fluid" src="http://placehold.it/500x300" alt="" />
+                <img className="img-fluid" src={this.props.clickedProduct.photos[1].url} alt="" style={{ width: '500px', height: '300px' }} />
               </a>
             </div>
 
             <div className="col-md-3 col-sm-6 mb-4">
               <a href="#">
-                <img className="img-fluid" src="http://placehold.it/500x300" alt="" />
+                <img className="img-fluid" src={this.props.clickedProduct.photos[1].url} alt="" style={{ width: '500px', height: '300px' }} />
               </a>
             </div>
 
             <div className="col-md-3 col-sm-6 mb-4">
               <a href="#">
-                <img className="img-fluid" src="http://placehold.it/500x300" alt="" />
+                <img className="img-fluid" src={this.props.clickedProduct.photos[1].url} alt="" style={{ width: '500px', height: '300px' }} />
               </a>
             </div>
 
-          </div>
-          {/* /.row */}
-
-        {/* /.container */}
+          </div> */}
       </div>
 
     </div>

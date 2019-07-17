@@ -3,7 +3,6 @@ import React from 'react';
 const Events = (props) => {
 
   return(
-
     <div>
       <div class="jumbotron">
         <h1 class="display-4">Sales Event</h1>
@@ -20,9 +19,7 @@ const Events = (props) => {
         <p>Click the button below to learn more.</p>
         <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
       </div>
-
     </div>
-
   )
 }
 

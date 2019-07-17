@@ -11,7 +11,6 @@ export default class Cart extends Component {
     }
   }
 
-
   componentDidMount() {
     fetch('http://localhost:3000/api/v1/users/1')
       .then(resp =>resp.json())
@@ -28,7 +27,6 @@ export default class Cart extends Component {
       .then(() => this.calculateTotal())
   }
 
-
   calculateTotal = () => {
     const prices = this.state.userCartItems.map((cartObj) =>
       (cartObj.price * cartObj.quantity)
@@ -39,7 +37,6 @@ export default class Cart extends Component {
     }
     this.setState({ cartTotal: summedTotal }, () => console.log(this.state.cartTotal))
   }
-
 
   createCartItem = () => {
     if(this.state.userCartItems.length > 0) {
@@ -52,20 +49,6 @@ export default class Cart extends Component {
     }
   }
 
-  // findCartTotal = () => {
-  //
-  // }
-
-  // sumTotals = () => {
-  //   const grandTotal =
-  //   (this.props.cartTotal).toFixed(2) +
-  //   (this.props.cartTotal * 0.1).toFixed(2) +
-  //   (this.props.cartTotal * 0.02).toFixed(2)
-  //
-  //   this.setState({ grandTotal: grandTotal })
-  //
-  // }
-
   render() {
     return(
       <div className="px-4 px-lg-0">
@@ -75,7 +58,6 @@ export default class Cart extends Component {
               <div className="col-lg-12 p-5 bg-white rounded shadow-sm mb-5" style={{ marginTop: '50px' }}>
                 <div className="table-responsive">
                   <table className="table">
-
                     <thead>
                       <tr>
                         <th scope="col" className="border-0 bg-light">
@@ -85,27 +67,24 @@ export default class Cart extends Component {
                           <div className="py-2 text-uppercase">Price</div>
                         </th>
                         <th scope="col" class="border-0 bg-light">
-                          <div class="py-2 text-uppercase">Quantity</div>
+                          <div className="py-2 text-uppercase">Quantity</div>
                         </th>
                         <th scope="col" className="border-0 bg-light">
                           <div className="py-2 text-uppercase">Remove</div>
                         </th>
                       </tr>
                     </thead>
-
                     <tbody>
 
                       {/* cart items here (table rows) */}
                       {this.createCartItem()}
 
                     </tbody>
-
                   </table>
                 </div>
               </div>
             </div>
-            {/* ITEMS LISET SECTION ENDS HERE */}
-
+            {/* ITEMS LIST SECTION ENDS HERE */}
 
 
             {/* CHECKOUT SECTION STARTS HERE */}
@@ -119,7 +98,7 @@ export default class Cart extends Component {
                   <ul className="list-unstyled mb-4">
                     <li className="d-flex justify-content-between py-3 border-bottom"><strong className="text-muted">Order Subtotal </strong><strong>${(this.state.cartTotal).toFixed(2)}</strong></li>
                     <li className="d-flex justify-content-between py-3 border-bottom"><strong className="text-muted">Shipping and handling</strong><strong>${(this.state.cartTotal * 0.1).toFixed(2)}</strong></li>
-                    <li className="d-flex justify-content-between py-3 border-bottom"><strong className="text-muted">Tax</strong><strong>${(this.state.cartTotal * 0.02).toFixed(2)}</strong></li>
+                    <li className="d-flex justify-content-between py-3 border-bottom"><strong className="text-muted">Tax</strong><strong>${(this.state.cartTotal * 0.04).toFixed(2)}</strong></li>
                     <li className="d-flex justify-content-between py-3 border-bottom"><strong className="text-muted">Total</strong>
                       <h5 className="font-weight-bold">${(parseFloat((this.state.cartTotal).toFixed(2)) + parseFloat((this.state.cartTotal * 0.1).toFixed(2)) + parseFloat((this.state.cartTotal * 0.02).toFixed(2))).toFixed(2)}</h5>
                     </li>

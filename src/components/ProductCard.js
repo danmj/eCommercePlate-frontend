@@ -4,7 +4,6 @@ import { NavLink } from 'react-router-dom';
 
 export default class ProductCard extends Component {
 
-
   detailClickHandler = () => {
     this.props.detailClickHandler(this.props.product)
   }

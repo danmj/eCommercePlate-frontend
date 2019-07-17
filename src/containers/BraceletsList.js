@@ -3,7 +3,6 @@ import ProductCard from '../components/ProductCard.js';
 
 const BraceletsList = (props) => {
 
-
   const makeProductCard = () => {
     return props.productsData.map((product) => {
       if (product.type_id === 2) {
@@ -17,7 +16,6 @@ const BraceletsList = (props) => {
       {makeProductCard()}
     </div>
   )
-
 }
 
 export default BraceletsList

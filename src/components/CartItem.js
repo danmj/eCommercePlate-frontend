@@ -6,10 +6,6 @@ const CartItem = (props) => {
     props.removeItem(props.cartObj)
   }
 
-  const parseQuantityValue = () => {
-    return parseInt(props.quantityValue)
-  }
-
   return(
     <tr>
       <th scope="row" className="border-0">
@@ -21,7 +17,7 @@ const CartItem = (props) => {
         </div>
       </th>
       <td className="border-0 align-middle"><strong>{(props.cartObj.price).toFixed(2)}</strong></td>
-      <td class="align-middle"><strong>{props.cartObj.quantity}</strong></td>
+      <td className="align-middle"><strong>{props.cartObj.quantity}</strong></td>
       <td className="border-0 align-middle"><a href="#" className="text-dark"><ion-icon name="trash" onClick={() => removeItem()}></ion-icon></a></td>
     </tr>
   )

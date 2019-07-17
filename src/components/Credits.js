@@ -4,7 +4,6 @@ import { NavLink } from 'react-router-dom';
 const Credits = (props) => {
 
   return(
-
     <div className="credits-section">
 
       <footer className="page-footer font-small blue pt-4">
@@ -73,7 +72,6 @@ const Credits = (props) => {
       </div>
       </footer>
     </div>
-
   )
 }
 

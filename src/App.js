@@ -40,8 +40,6 @@ export default class App extends Component {
     this.setState({ clickedProduct: productObj })
   }
 
-
-
   removeItem = (obj) => {
     fetch(`http://localhost:3000/api/v1/cartitems/${obj.id}`, {
       method: 'delete'
@@ -57,7 +55,7 @@ export default class App extends Component {
   }
 
   addItemToCart = (productObj) => {
-    this.setState({ itemToAdd: productObj }, () => this.postCartItem()  )     // callback function here will be postCartItem()
+    this.setState({ itemToAdd: productObj }, () => this.postCartItem() )
   }
 
   postCartItem = () => {
@@ -70,7 +68,6 @@ export default class App extends Component {
         },
         body: JSON.stringify(
           {
-            cart_id: 1,
             user_id: 1,
             product_id: this.state.itemToAdd.id,
             quantity: this.state.quantity,
@@ -78,11 +75,7 @@ export default class App extends Component {
             price: this.state.itemToAdd.price,
           })
     })
-
   }
-
-
-
 
   ///////// CARTITEM SUBMIT ENDS HERE ///////////
 
@@ -91,7 +84,9 @@ export default class App extends Component {
     return (
       <Router>
         <NavBar calculateTotal={this.calculateTotal} />
+
         <Route exact path="/" component={DemoCarousel} />
+
         <Route exact path="/about" component={OurStory} />
 
         <Route
