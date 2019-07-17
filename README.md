@@ -1,4 +1,4 @@
-There is a back-end API that serves this site that can be found in the repository /new_site_backend
+There is a back end API that serves this site that can be found in the repository /new_site_backend
 
 To access to full features of this site, complete the following steps:
 
