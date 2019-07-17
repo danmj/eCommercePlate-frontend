@@ -35,7 +35,7 @@ export default class Cart extends Component {
     for(var i = 0; i < prices.length; i++) {
       summedTotal += prices[i]
     }
-    this.setState({ cartTotal: summedTotal }, () => console.log(this.state.cartTotal))
+    this.setState({ cartTotal: summedTotal })
   }
 
   createCartItem = () => {
@@ -66,7 +66,7 @@ export default class Cart extends Component {
                         <th scope="col" className="border-0 bg-light">
                           <div className="py-2 text-uppercase">Price</div>
                         </th>
-                        <th scope="col" class="border-0 bg-light">
+                        <th scope="col" className="border-0 bg-light">
                           <div className="py-2 text-uppercase">Quantity</div>
                         </th>
                         <th scope="col" className="border-0 bg-light">

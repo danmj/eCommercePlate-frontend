@@ -23,7 +23,6 @@ export default class App extends Component {
       clickedProduct: null,       // product object of the specific clicked product
       itemToAdd: null,            // item that is queued up to be added into the cart
       quantity: 0,                // the selected quantity of the queued item
-      cartTotal: 0,               // sum of .price of all products currently in cart array
     };
   };
 
@@ -44,14 +43,14 @@ export default class App extends Component {
     fetch(`http://localhost:3000/api/v1/cartitems/${obj.id}`, {
       method: 'delete'
     })
-      .then(response => response.json());
+      .then(response => response.json())
   }
 
 
   ///////// CARITEM SUBMIT STARTS HERE ///////////
 
   quantityChangeReader = (e) => {
-    this.setState({ quantity: e.target.value }, () => console.log(this.state.quantity))
+    this.setState({ quantity: e.target.value })
   }
 
   addItemToCart = (productObj) => {
@@ -61,20 +60,28 @@ export default class App extends Component {
   postCartItem = () => {
     console.log('posting');
 
-    fetch('http://localhost:3000/api/v1/cartitems', {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json; charset=utf-8",
-        },
-        body: JSON.stringify(
-          {
-            user_id: 1,
-            product_id: this.state.itemToAdd.id,
-            quantity: this.state.quantity,
-            name: this.state.itemToAdd.name,
-            price: this.state.itemToAdd.price,
-          })
-    })
+    if(this.state.quantity !== 0) {
+      fetch('http://localhost:3000/api/v1/cartitems', {
+          method: "POST",
+          headers: {
+              "Content-Type": "application/json; charset=utf-8",
+          },
+          body: JSON.stringify(
+            {
+              user_id: 1,
+              product_id: this.state.itemToAdd.id,
+              quantity: this.state.quantity,
+              name: this.state.itemToAdd.name,
+              price: this.state.itemToAdd.price,
+              photo: this.state.itemToAdd.photos[1].url
+            })
+      })
+    }
+    else{
+      console.log("no quantity")
+    }
+
+
   }
 
   ///////// CARTITEM SUBMIT ENDS HERE ///////////

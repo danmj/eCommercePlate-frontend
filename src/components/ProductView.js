@@ -13,6 +13,7 @@ export default class ProductView extends Component {
     }
   }
 
+
   backClickHandler = () => {
     window.history.back()
   }
@@ -24,6 +25,7 @@ export default class ProductView extends Component {
 
   quantityChangeReader = (e) => {
     this.props.quantityChangeReader(e)
+    e.preventDefault()
   }
 
 
@@ -64,8 +66,8 @@ export default class ProductView extends Component {
               <p>{this.props.clickedProduct.subtitle}</p>
 
 
-              <select className="custom-select" style={{ width: '260px' }} value={this.props.quantityValue} onChange={(e) => this.quantityChangeReader(e)}>
-                  <option value="">Select Quantity</option>
+              <select className="custom-select" style={{ maxWidth: '260px' }} value={this.props.quantityValue} onChange={(e) => this.quantityChangeReader(e)}>
+                  <option value="0">Select Quantity</option>
                   <option value="1">1</option>
                   <option value="2">2</option>
                   <option value="3">3</option>
@@ -76,7 +78,7 @@ export default class ProductView extends Component {
                 <div style={{ padding: '4px' }}>
                 </div>
 
-                <button className="btn btn-secondary" style={{ width: '260px' }} onClick={() => this.addToCartClickHandler()}>{this.state.buttonMessage}</button>
+                <button className="btn btn-secondary" style={{ maxWidth: '260px' }} onClick={() => this.addToCartClickHandler()}>{this.state.buttonMessage}</button>
 
             </div>
 
