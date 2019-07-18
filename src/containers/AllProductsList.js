@@ -1,20 +1,39 @@
-import React from 'react';
+import React, { Component } from 'react'
 import ProductCard from '../components/ProductCard.js';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { fetchProducts } from '../actions/productAction.js';
 
-const AllProductsList = (props) => {
+class AllProductsList extends Component {
 
-  const makeProductCard = () => {
-    return props.productsData.map((product) =>
-      <ProductCard key={product.id} product={product} detailClickHandler={props.detailClickHandler} />
+
+  componentDidMount() {
+    this.props.fetchProducts()
+  }
+
+  makeProductCard = () => {
+    return this.props.products.map((product) =>
+      <ProductCard key={product.id} product={product} detailClickHandler={this.props.detailClickHandler} />
     )
   }
 
-  return(
-    <div style={{ display: 'flex', justifyContent: 'center', alignContent: 'center', flexFlow: 'row wrap', backgroundColor: '#eeeeee'}}>
-      {makeProductCard()}
-    </div>
+  render() {
+    return(
+      <div style={{ display: 'flex', justifyContent: 'center', alignContent: 'center', flexFlow: 'row wrap', backgroundColor: '#eeeeee'}}>
+        {this.makeProductCard()}
+      </div>
 
-  )
+    )
+  }
 }
 
-export default AllProductsList
+AllProductsList.propTypes = {
+  fetchProducts: PropTypes.func.isRequired,
+  products: PropTypes.array.isRequired,
+}
+
+const mapStateToprops = state => ({
+  products: state.products.items,
+})
+
+export default connect(mapStateToprops, {fetchProducts})(AllProductsList)

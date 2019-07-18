@@ -1,47 +1,24 @@
 import React, { Component } from 'react';
 import CartItem from './CartItem.js';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { fetchCart, getQuantity, deleteCartitem } from '../actions/cartitemAction.js';
 
-export default class Cart extends Component {
-
-  constructor(props) {
-    super(props)
-    this.state={
-      userCartItems: [],
-      cartTotal: 0,
-    }
-  }
+class Cart extends Component {
 
   componentDidMount() {
-    fetch('http://localhost:3000/api/v1/users/1')
-      .then(resp =>resp.json())
-      .then(data => {
-        // console.log('data', data.cartitems);
-        let cartitemIds = []
-        data.cartitems.forEach(x => cartitemIds.push(x.id))
-
-        this.setState({
-          userCartItems: data.cartitems,
-         })
-         setTimeout(()=>{console.log(this.state)}, 2000)
-      })
-      .then(() => this.calculateTotal())
+    this.props.fetchCart()
+    this.props.getQuantity()
   }
 
-  calculateTotal = () => {
-    const prices = this.state.userCartItems.map((cartObj) =>
-      (cartObj.price * cartObj.quantity)
-    )
-    let summedTotal = 0
-    for(var i = 0; i < prices.length; i++) {
-      summedTotal += prices[i]
-    }
-    this.setState({ cartTotal: summedTotal })
+  removeItem = (obj) => {
+    this.props.deleteCartitem(obj)
   }
 
   createCartItem = () => {
-    if(this.state.userCartItems.length > 0) {
-      return this.state.userCartItems.map((cartObj) =>
-        <CartItem key={cartObj.id} cartObj={cartObj} removeItem={this.props.removeItem} quantityValue={this.props.quantityValue} />
+    if(this.props.cart.length > 0) {
+      return this.props.cart.map((cartObj) =>
+        <CartItem key={cartObj.id} cartObj={cartObj} removeItem={this.removeItem} quantityValue={this.props.quantityValue} />
       )
     }
     else {
@@ -96,11 +73,11 @@ export default class Cart extends Component {
                 <div className="p-4">
                   <p className="font-italic mb-4">Shipping and additional costs are calculated based on your subtotal.</p>
                   <ul className="list-unstyled mb-4">
-                    <li className="d-flex justify-content-between py-3 border-bottom"><strong className="text-muted">Order Subtotal </strong><strong>${(this.state.cartTotal).toFixed(2)}</strong></li>
-                    <li className="d-flex justify-content-between py-3 border-bottom"><strong className="text-muted">Shipping and handling</strong><strong>${(this.state.cartTotal * 0.1).toFixed(2)}</strong></li>
-                    <li className="d-flex justify-content-between py-3 border-bottom"><strong className="text-muted">Tax</strong><strong>${(this.state.cartTotal * 0.04).toFixed(2)}</strong></li>
+                    <li className="d-flex justify-content-between py-3 border-bottom"><strong className="text-muted">Order Subtotal </strong><strong>${(this.props.sum).toFixed(2)}</strong></li>
+                    <li className="d-flex justify-content-between py-3 border-bottom"><strong className="text-muted">Shipping and handling</strong><strong>${(this.props.sum * 0.1).toFixed(2)}</strong></li>
+                    <li className="d-flex justify-content-between py-3 border-bottom"><strong className="text-muted">Tax</strong><strong>${(this.props.sum * 0.04).toFixed(2)}</strong></li>
                     <li className="d-flex justify-content-between py-3 border-bottom"><strong className="text-muted">Total</strong>
-                      <h5 className="font-weight-bold">${(parseFloat((this.state.cartTotal).toFixed(2)) + parseFloat((this.state.cartTotal * 0.1).toFixed(2)) + parseFloat((this.state.cartTotal * 0.02).toFixed(2))).toFixed(2)}</h5>
+                      <h5 className="font-weight-bold">${(parseFloat((this.props.sum).toFixed(2)) + parseFloat((this.props.sum * 0.1).toFixed(2)) + parseFloat((this.props.sum * 0.02).toFixed(2))).toFixed(2)}</h5>
                     </li>
                   </ul><a href="#" className="btn btn-dark rounded-pill py-2 btn-block">Procceed to checkout</a>
                 </div>
@@ -111,6 +88,19 @@ export default class Cart extends Component {
       </div>
     )
   }
-
-
 }
+
+Cart.propTypes = {
+  fetchCart: PropTypes.func.isRequired,
+  getQuantity: PropTypes.func.isRequired,
+  deleteCartitem: PropTypes.func.isRequired,
+  cart: PropTypes.array.isRequired,
+  sum: PropTypes.number.isRequired
+}
+
+const mapStateToProps = state => ({
+  cart: state.cart.userCart,
+  sum: state.cart.total,
+})
+
+export default connect(mapStateToProps, {fetchCart, getQuantity, deleteCartitem})(Cart)

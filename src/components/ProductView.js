@@ -1,31 +1,43 @@
 // ProductView is the product 'Details' page
 import React, { Component } from 'react'
 import ReactImageMagnify from 'react-image-magnify';
+import propTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { postCartitem } from '../actions/cartitemAction.js';
 
-// import SpacedSpan from './SpacedSpan';
-
-export default class ProductView extends Component {
+class ProductView extends Component {
 
   constructor(props) {
     super(props)
     this.state = {
-      buttonMessage: 'Add to cart'
+      buttonMessage: 'Add to cart',
+      quantity: 0,
     }
   }
-
 
   backClickHandler = () => {
     window.history.back()
   }
 
-  addToCartClickHandler = () => {
-    this.props.addItemToCart(this.props.clickedProduct)
-    this.setState({ buttonMessage: 'Added to cart'})
+  quantityChangeReader = (e) => {
+    this.setState({ quantity: e.target.value })
   }
 
-  quantityChangeReader = (e) => {
-    this.props.quantityChangeReader(e)
-    e.preventDefault()
+  addToCartClickHandler = () => {
+
+    this.setState({ buttonMessage: 'Added to cart'})
+
+    // this.props.addItemToCart(this.props.clickedProduct)
+    const cartitem = {
+      user_id: 1,
+      product_id: this.props.clickedProduct.id,
+      quantity: this.state.quantity,
+      name: this.props.clickedProduct.name,
+      price: this.props.clickedProduct.price,
+      photo: this.props.clickedProduct.photos[1].url
+    }
+
+    this.props.postCartitem(cartitem)
   }
 
 
@@ -117,3 +129,9 @@ export default class ProductView extends Component {
     )
   }
 }
+
+ProductView.propTypes = {
+  postCartitem: propTypes.func.isRequired
+}
+
+export default connect(null, { postCartitem })(ProductView)

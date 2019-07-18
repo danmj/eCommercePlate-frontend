@@ -1,21 +1,39 @@
-import React from 'react';
+import React, { Component } from 'react'
 import ProductCard from '../components/ProductCard.js';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { fetchProducts } from '../actions/productAction.js';
 
-const NecklacesList = (props) => {
+class NecklacesList extends Component {
 
-  const makeProductCard = () => {
-    return props.productsData.map((product) => {
+  componentDidMount() {
+    this.props.fetchProducts()
+  }
+
+  makeProductCard = () => {
+    return this.props.products.map((product) => {
       if (product.type_id === 1) {
-        return <ProductCard key={product.id} product={product} detailClickHandler={props.detailClickHandler} />
+        return <ProductCard key={product.id} product={product} detailClickHandler={this.props.detailClickHandler} />
       }
     })
   }
 
-  return(
-    <div style={{ display: 'flex', justifyContent: 'center', flexFlow: 'row wrap', backgroundColor: '#eeeeee' }}>
-      {makeProductCard()}
-    </div>
-  )
+  render() {
+    return(
+      <div style={{ display: 'flex', justifyContent: 'center', flexFlow: 'row wrap', backgroundColor: '#eeeeee' }}>
+        {this.makeProductCard()}
+      </div>
+    )
+  }
 }
 
-export default NecklacesList
+NecklacesList.propTypes = {
+  fetchProducts: PropTypes.func.isRequired,
+  Products: PropTypes.array.isRequired,
+}
+
+const mapStateToprops = state => ({
+  products: state.products.items,
+})
+
+export default connect(mapStateToprops, {fetchProducts})(NecklacesList)

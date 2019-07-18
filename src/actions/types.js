@@ -1,0 +1,7 @@
+export const FETCH_PRODUCTS = 'FETCH_PRODUCTS'
+
+export const FETCH_CART = 'FETCH_CART'
+export const GET_TOTAL = 'GET_TOTAL'
+export const POST_CARTITEM = 'POST_CARTITEM'
+export const DELETE_CARTITEM = 'DELETE_CARTITEM'
+export const GET_QUANTITY = 'GET_QUANTITY'

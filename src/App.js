@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import './App.css';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { Provider } from 'react-redux';
+import store from './store.js';
 import NavBar from './containers/NavBar.js';
 import DemoCarousel from './components/DemoCarousel.js';
 import OurStory from './components/OurStory.js';
@@ -17,131 +19,77 @@ export default class App extends Component {
 
   constructor(props) {
     super(props);
-    // this.detailClickHandler = this.detailClickHandler.bind(this);
     this.state = {
-      productsData: [],           // JSON data from API
       clickedProduct: null,       // product object of the specific clicked product
-      itemToAdd: null,            // item that is queued up to be added into the cart
-      quantity: 0,                // the selected quantity of the queued item
     };
   };
 
   // State in other components:
   // buttonMessage in ProductView.js, holds the text displayed on the 'buy' button in product view
-
-  componentDidMount() {
-    fetch('http://localhost:3000/api/v1/products/')
-      .then(res => res.json())
-      .then(products => this.setState({ productsData: products }) )
-  }
+  // userCartItems in Cart.js, this is the fetched data of a user's Cartitems
+  // cartTotal in Cart.js, this is the count of the summed prices of the user's Cartitems
 
   detailClickHandler = (productObj) => {
     this.setState({ clickedProduct: productObj })
   }
 
-  removeItem = (obj) => {
-    fetch(`http://localhost:3000/api/v1/cartitems/${obj.id}`, {
-      method: 'delete'
-    })
-      .then(response => response.json())
-  }
-
-
-  ///////// CARITEM SUBMIT STARTS HERE ///////////
-
-  quantityChangeReader = (e) => {
-    this.setState({ quantity: e.target.value })
-  }
-
-  addItemToCart = (productObj) => {
-    this.setState({ itemToAdd: productObj }, () => this.postCartItem() )
-  }
-
-  postCartItem = () => {
-    console.log('posting');
-
-    if(this.state.quantity !== 0) {
-      fetch('http://localhost:3000/api/v1/cartitems', {
-          method: "POST",
-          headers: {
-              "Content-Type": "application/json; charset=utf-8",
-          },
-          body: JSON.stringify(
-            {
-              user_id: 1,
-              product_id: this.state.itemToAdd.id,
-              quantity: this.state.quantity,
-              name: this.state.itemToAdd.name,
-              price: this.state.itemToAdd.price,
-              photo: this.state.itemToAdd.photos[1].url
-            })
-      })
-    }
-    else{
-      console.log("no quantity")
-    }
-
-
-  }
-
-  ///////// CARTITEM SUBMIT ENDS HERE ///////////
-
-
   render() {
     return (
-      <Router>
-        <NavBar calculateTotal={this.calculateTotal} />
+      <Provider store={store}>
+        <Router>
+          <NavBar calculateTotal={this.calculateTotal} />
 
-        <Route exact path="/" component={DemoCarousel} />
+          <Route exact path="/" component={DemoCarousel} />
 
-        <Route exact path="/about" component={OurStory} />
+          <Route exact path="/about" component={OurStory} />
 
-        <Route
-          path="/products/all"
-          render={(routeProps) => (
-            <AllProductsList productsData={this.state.productsData} detailClickHandler={this.detailClickHandler} />
-          )}
-        />
+          <Route
+            path="/products/all"
+            render={(routeProps) => (
+              <AllProductsList detailClickHandler={this.detailClickHandler} />
+            )}
+          />
 
-        <Route
-          path="/products/necklaces"
-          render={(routeProps) => (
-            <NecklacesList productsData={this.state.productsData} detailClickHandler={this.detailClickHandler} />
-          )}
-        />
+          <Route
+            path="/products/necklaces"
+            render={(routeProps) => (
+              <NecklacesList detailClickHandler={this.detailClickHandler} />
+            )}
+          />
 
-        <Route
-          path="/products/bracelets"
-          render={(routeProps) => (
-            <BraceletsList productsData={this.state.productsData} detailClickHandler={this.detailClickHandler} />
-          )}
-        />
+          <Route
+            path="/products/bracelets"
+            render={(routeProps) => (
+              <BraceletsList detailClickHandler={this.detailClickHandler} />
+            )}
+          />
 
-        <Route
-          path="/products/earrings"
-          render={(routeProps) => (
-            <EarringsList productsData={this.state.productsData} detailClickHandler={this.detailClickHandler} />
-          )}
-        />
+          <Route
+            path="/products/earrings"
+            render={(routeProps) => (
+              <EarringsList detailClickHandler={this.detailClickHandler} />
+            )}
+          />
 
-        <Route
-          path="/products/view"
-          render={(routeProps) => (
-            <ProductViewContainer clickedProduct={this.state.clickedProduct} addItemToCart={this.addItemToCart} calculateTotal={this.calculateTotal} quantityChangeReader={this.quantityChangeReader} quantityValue={this.state.quantityValue} />
-          )}
-        />
+          <Route
+            path="/products/view"
+            render={(routeProps) => (
+              <ProductViewContainer clickedProduct={this.state.clickedProduct} addItemToCart={this.addItemToCart} calculateTotal={this.calculateTotal} quantityChangeReader={this.quantityChangeReader} quantityValue={this.state.quantityValue} />
+            )}
+          />
 
-        <Route exact path="/events" component={Events} />
+          <Route exact path="/events" component={Events} />
 
-        <Route
-          path="/cart"
-          render={(routeProps) => (
-            <Cart shoppingCart={this.state.cart} cartTotal={this.state.cartTotal} removeItem={this.removeItem} quantityValue={this.state.quantityValue} />
-          )}
-        />
+          <Route
+            path="/cart"
+            render={(routeProps) => (
+              <Cart shoppingCart={this.state.cart} cartTotal={this.state.cartTotal} removeItem={this.removeItem} quantityValue={this.state.quantityValue} />
+            )}
+          />
 
-        <Credits />
-      </Router>
+          <Credits />
+        </Router>
+      </Provider>
     );
   }
 }
