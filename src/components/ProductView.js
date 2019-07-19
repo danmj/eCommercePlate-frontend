@@ -1,5 +1,5 @@
 // ProductView is the product 'Details' page
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 import ReactImageMagnify from 'react-image-magnify';
 import propTypes from 'prop-types';
 import { connect } from 'react-redux';

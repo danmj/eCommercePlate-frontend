@@ -1,7 +1,6 @@
-// ROOT REDUCER
 import { combineReducers } from 'redux';
-import productReducer from './productReducer.js';
 import cartitemReducer from './cartitemReducer.js';
+import productReducer from './productReducer.js';
 import clickReducer from './clickReducer.js';
 
 export default combineReducers({

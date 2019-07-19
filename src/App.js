@@ -2,22 +2,23 @@ import React, { Component } from 'react';
 import './App.css';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import { Provider } from 'react-redux';
+import PropTypes from 'prop-types';
 import store from './store.js';
+import { connect } from 'react-redux';
+import { fetchProducts } from './actions/productAction.js';
+import { clickCard } from './actions/clickAction.js';
+
 import NavBar from './containers/NavBar.js';
 import Carousel from './components/Carousel.js';
 import OurStory from './components/OurStory.js';
+import Events from './components/Events.js';
 import AllProductsList from './containers/AllProductsList.js';
 import NecklacesList from './containers/NecklacesList.js';
 import BraceletsList from './containers/BraceletsList.js';
 import EarringsList from './containers/EarringsList.js';
-import Events from './components/Events.js';
 import Credits from './components/Credits.js';
 import ProductViewContainer from './containers/ProductViewContainer.js';
 import Cart from './components/Cart.js';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import { fetchProducts } from './actions/productAction.js';
-import { clickCard } from './actions/clickAction.js';
 
 class App extends Component {
 

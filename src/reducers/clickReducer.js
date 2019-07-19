@@ -1,4 +1,4 @@
-import { CLICK_CARD, CLICK_CLOSE } from '../actions/types'
+import { CLICK_CARD, CLICK_CLOSE } from '../actions/types';
 
 const initialState = {
   clickedCard: 0,

@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
-import propTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { clickClose } from '../actions/clickAction.js';
 
@@ -64,7 +63,7 @@ class NavBar extends Component {
         </nav>
       </div>
     );
-  };
+  }
 
 }
 
