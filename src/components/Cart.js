@@ -18,7 +18,7 @@ class Cart extends Component {
   createCartItem = () => {
     if(this.props.cart.length > 0) {
       return this.props.cart.map((cartObj) =>
-        <CartItem key={cartObj.id} cartObj={cartObj} removeItem={this.removeItem} quantityValue={this.props.quantityValue} />
+        <CartItem key={cartObj.id} cartObj={cartObj} removeItem={this.removeItem} />
       )
     }
     else {

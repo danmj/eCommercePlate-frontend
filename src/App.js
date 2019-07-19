@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import store from './store.js';
 import NavBar from './containers/NavBar.js';
-import DemoCarousel from './components/DemoCarousel.js';
+import Carousel from './components/Carousel.js';
 import OurStory from './components/OurStory.js';
 import AllProductsList from './containers/AllProductsList.js';
 import NecklacesList from './containers/NecklacesList.js';
@@ -14,82 +14,41 @@ import Events from './components/Events.js';
 import Credits from './components/Credits.js';
 import ProductViewContainer from './containers/ProductViewContainer.js';
 import Cart from './components/Cart.js';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { fetchProducts } from './actions/productAction.js';
+import { clickCard } from './actions/clickAction.js';
 
-export default class App extends Component {
-
-  constructor(props) {
-    super(props);
-    this.state = {
-      clickedProduct: null,       // product object of the specific clicked product
-    };
-  };
-
-  // State in other components:
-  // buttonMessage in ProductView.js, holds the text displayed on the 'buy' button in product view
-  // userCartItems in Cart.js, this is the fetched data of a user's Cartitems
-  // cartTotal in Cart.js, this is the count of the summed prices of the user's Cartitems
-
-  detailClickHandler = (productObj) => {
-    this.setState({ clickedProduct: productObj })
-  }
+class App extends Component {
 
   render() {
     return (
       <Provider store={store}>
         <Router>
-          <NavBar calculateTotal={this.calculateTotal} />
-
-          <Route exact path="/" component={DemoCarousel} />
-
+          <NavBar />
+          <Route exact path="/" component={Carousel} />
           <Route exact path="/about" component={OurStory} />
-
-          <Route
-            path="/products/all"
-            render={(routeProps) => (
-              <AllProductsList detailClickHandler={this.detailClickHandler} />
-            )}
-          />
-
-          <Route
-            path="/products/necklaces"
-            render={(routeProps) => (
-              <NecklacesList detailClickHandler={this.detailClickHandler} />
-            )}
-          />
-
-          <Route
-            path="/products/bracelets"
-            render={(routeProps) => (
-              <BraceletsList detailClickHandler={this.detailClickHandler} />
-            )}
-          />
-
-          <Route
-            path="/products/earrings"
-            render={(routeProps) => (
-              <EarringsList detailClickHandler={this.detailClickHandler} />
-            )}
-          />
-
+          <Route exact path="/products/all" component={AllProductsList} />
+          <Route exact path="/products/necklaces" component={NecklacesList} />
+          <Route exact path="/products/bracelets" component={BraceletsList} />
+          <Route exact path="/products/earrings" component={EarringsList} />
           <Route
             path="/products/view"
             render={(routeProps) => (
-              <ProductViewContainer clickedProduct={this.state.clickedProduct} addItemToCart={this.addItemToCart} calculateTotal={this.calculateTotal} quantityChangeReader={this.quantityChangeReader} quantityValue={this.state.quantityValue} />
+              <ProductViewContainer clickedProduct={this.props.clicked} />
             )}
           />
-
           <Route exact path="/events" component={Events} />
-
-          <Route
-            path="/cart"
-            render={(routeProps) => (
-              <Cart shoppingCart={this.state.cart} cartTotal={this.state.cartTotal} removeItem={this.removeItem} quantityValue={this.state.quantityValue} />
-            )}
-          />
-
+          <Route exact path="/cart" component={Cart} />
           <Credits />
         </Router>
       </Provider>
     );
   }
 }
+
+const mapStateToProps = state => ({
+  clicked: state.click.clickedCard
+})
+
+export default connect(mapStateToProps, {fetchProducts, clickCard})(App)

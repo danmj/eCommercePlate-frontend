@@ -3,7 +3,6 @@ import React from 'react';
 const Events = (props) => {
 
   return(
-
     <div className="container py-5" style={{ backgroundColor: '#eeeeee' }}>
 
         <div className="row text-center text-white mb-5">
@@ -11,7 +10,6 @@ const Events = (props) => {
                 <h1 className="display-4" style={{ color: 'black' }}>Upcoming Events</h1>
               </div>
         </div>
-
 
         <div className="row">
             <div className="col-lg-7 mx-auto">
@@ -36,7 +34,6 @@ const Events = (props) => {
             </div>
         </div>
     </div>
-
   )
 }
 

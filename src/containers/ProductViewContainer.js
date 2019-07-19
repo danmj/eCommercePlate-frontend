@@ -6,9 +6,8 @@ export default class ProductViewContainer extends Component {
   render() {
     return(
       <div>
-        <ProductView clickedProduct={this.props.clickedProduct} addItemToCart={this.props.addItemToCart} calculateTotal={this.props.calculateTotal} quantityChangeReader={this.props.quantityChangeReader} />
+        <ProductView clickedProduct={this.props.clickedProduct} />
       </div>
-    )
+      )
+    }
   }
-
-}

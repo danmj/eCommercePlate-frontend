@@ -4,6 +4,7 @@ import ReactImageMagnify from 'react-image-magnify';
 import propTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { postCartitem } from '../actions/cartitemAction.js';
+import { clickClose } from '../actions/clickAction.js';
 
 class ProductView extends Component {
 
@@ -16,7 +17,7 @@ class ProductView extends Component {
   }
 
   backClickHandler = () => {
-    window.history.back()
+    this.props.clickClose()
   }
 
   quantityChangeReader = (e) => {
@@ -24,10 +25,7 @@ class ProductView extends Component {
   }
 
   addToCartClickHandler = () => {
-
     this.setState({ buttonMessage: 'Added to cart'})
-
-    // this.props.addItemToCart(this.props.clickedProduct)
     const cartitem = {
       user_id: 1,
       product_id: this.props.clickedProduct.id,
@@ -36,7 +34,6 @@ class ProductView extends Component {
       price: this.props.clickedProduct.price,
       photo: this.props.clickedProduct.photos[1].url
     }
-
     this.props.postCartitem(cartitem)
   }
 
@@ -91,47 +88,13 @@ class ProductView extends Component {
                 </div>
 
                 <button className="btn btn-secondary" style={{ maxWidth: '260px' }} onClick={() => this.addToCartClickHandler()}>{this.state.buttonMessage}</button>
-
             </div>
-
           </div>
-
-          {/* <h5 className="my-4">YOU MAY ALSO LIKE</h5>
-          <div className="row">
-            <div className="col-md-3 col-sm-6 mb-4">
-              <a href="#">
-                <img className="img-fluid" src={this.props.clickedProduct.photos[1].url} alt="" style={{ width: '500px', height: '300px' }} />
-              </a>
-            </div>
-
-            <div className="col-md-3 col-sm-6 mb-4">
-              <a href="#">
-                <img className="img-fluid" src={this.props.clickedProduct.photos[1].url} alt="" style={{ width: '500px', height: '300px' }} />
-              </a>
-            </div>
-
-            <div className="col-md-3 col-sm-6 mb-4">
-              <a href="#">
-                <img className="img-fluid" src={this.props.clickedProduct.photos[1].url} alt="" style={{ width: '500px', height: '300px' }} />
-              </a>
-            </div>
-
-            <div className="col-md-3 col-sm-6 mb-4">
-              <a href="#">
-                <img className="img-fluid" src={this.props.clickedProduct.photos[1].url} alt="" style={{ width: '500px', height: '300px' }} />
-              </a>
-            </div>
-
-          </div> */}
       </div>
-
     </div>
     )
   }
 }
 
-ProductView.propTypes = {
-  postCartitem: propTypes.func.isRequired
-}
 
-export default connect(null, { postCartitem })(ProductView)
+export default connect(null, { postCartitem, clickClose })(ProductView)

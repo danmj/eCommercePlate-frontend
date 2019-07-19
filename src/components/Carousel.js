@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
 
-export default class DemoCarousel extends Component {
+export default class Carousel extends Component {
 
   render() {
     return (
