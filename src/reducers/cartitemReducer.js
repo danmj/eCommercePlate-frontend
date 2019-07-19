@@ -35,7 +35,8 @@ export default function(state = initialState, action) {
     case DELETE_CARTITEM:
       const array = state.userCart.filter(obj => obj !== action.payload)
       const originalTotal = state.total
-      let newTotal = originalTotal - action.payload.price
+      let newTotal = originalTotal - (action.payload.price * action.payload.quantity)
+
       return {
         ...state,
         userCart: array,
