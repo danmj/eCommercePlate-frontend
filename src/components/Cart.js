@@ -73,9 +73,9 @@ class Cart extends Component {
                 <div className="p-4">
                   <p className="font-italic mb-4">Shipping and additional costs are calculated based on your subtotal.</p>
                   <ul className="list-unstyled mb-4">
-                    <li className="d-flex justify-content-between py-3 border-bottom"><strong className="text-muted">Order Subtotal </strong><strong>${(this.props.sum).toFixed(2)}</strong></li>
-                    <li className="d-flex justify-content-between py-3 border-bottom"><strong className="text-muted">Shipping and handling</strong><strong>${(this.props.sum * 0.1).toFixed(2)}</strong></li>
-                    <li className="d-flex justify-content-between py-3 border-bottom"><strong className="text-muted">Tax</strong><strong>${(this.props.sum * 0.04).toFixed(2)}</strong></li>
+                    <li className="d-flex justify-content-between py-3 border-bottom"><strong className="text-muted">Order Subtotal </strong><strong>${Math.abs((this.props.sum)).toFixed(2)}</strong></li>
+                    <li className="d-flex justify-content-between py-3 border-bottom"><strong className="text-muted">Shipping and handling</strong><strong>${Math.abs((this.props.sum * 0.1)).toFixed(2)}</strong></li>
+                    <li className="d-flex justify-content-between py-3 border-bottom"><strong className="text-muted">Tax</strong><strong>${Math.abs((this.props.sum * 0.04)).toFixed(2)}</strong></li>
                     <li className="d-flex justify-content-between py-3 border-bottom"><strong className="text-muted">Total</strong>
                       <h5 className="font-weight-bold">${(parseFloat((this.props.sum).toFixed(2)) + parseFloat((this.props.sum * 0.1).toFixed(2)) + parseFloat((this.props.sum * 0.02).toFixed(2))).toFixed(2)}</h5>
                     </li>

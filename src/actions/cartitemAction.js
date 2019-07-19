@@ -8,7 +8,7 @@ export const fetchCart = () => dispatch => {
     .then(res => res.json())
     .then(cartjson =>
       dispatch({
-        type: 'FETCH_CART',
+        type: FETCH_CART,
         payload: cartjson
     }))
 }
@@ -18,7 +18,7 @@ export const getQuantity = () => dispatch => {
     .then(res => res.json())
     .then(cartjson =>
       dispatch({
-        type: 'GET_QUANTITY',
+        type: GET_QUANTITY,
         payload: cartjson
     }))
 }

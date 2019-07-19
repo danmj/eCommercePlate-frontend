@@ -5,7 +5,7 @@ export const fetchProducts = () => dispatch => {
     .then(res => res.json())
     .then(products =>
       dispatch({
-        type: 'FETCH_PRODUCTS',
+        type: FETCH_PRODUCTS,
         payload: products
     }) )
 }
