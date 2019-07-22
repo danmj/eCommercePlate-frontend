@@ -4,7 +4,6 @@ import ProductView from '../components/ProductView.js';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { fetchProducts } from '../actions/productAction.js';
-import { clickCard } from '../actions/clickAction.js';
 
 class BraceletsList extends Component {
 
@@ -14,7 +13,7 @@ class BraceletsList extends Component {
 
   renderDiv = () => {
     if(typeof(this.props.clicked) === "object") {
-      return <ProductView clickedProduct={this.props.clicked} />
+      return <ProductView />
     }
     else{
       return this.props.products.map((product) => {
@@ -37,7 +36,6 @@ class BraceletsList extends Component {
 BraceletsList.propTypes = {
   fetchProducts: PropTypes.func.isRequired,
   Products: PropTypes.array.isRequired,
-  clickCard: PropTypes.func.isRequired,
   clicked: PropTypes.object.isRequired,
 }
 
@@ -46,4 +44,4 @@ const mapStateToProps = state => ({
   clicked: state.click.clickedCard,
 })
 
-export default connect(mapStateToProps, {fetchProducts, clickCard})(BraceletsList)
+export default connect(mapStateToProps, {fetchProducts})(BraceletsList)

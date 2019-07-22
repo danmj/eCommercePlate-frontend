@@ -4,7 +4,6 @@ import ProductView from '../components/ProductView.js';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { fetchProducts } from '../actions/productAction.js';
-import { clickCard } from '../actions/clickAction.js';
 
 class AllProductsList extends Component {
 
@@ -14,7 +13,7 @@ class AllProductsList extends Component {
 
   renderDiv = () => {
     if(typeof(this.props.clicked) === "object") {
-      return <ProductView clickedProduct={this.props.clicked} />
+      return <ProductView />
     }
     else{
       return this.props.products.map((product) =>
@@ -28,7 +27,6 @@ class AllProductsList extends Component {
       <div style={{ display: 'flex', justifyContent: 'center', alignContent: 'center', flexFlow: 'row wrap', backgroundColor: '#eeeeee'}}>
         {this.renderDiv()}
       </div>
-
     )
   }
 }
@@ -36,7 +34,6 @@ class AllProductsList extends Component {
 AllProductsList.propTypes = {
   fetchProducts: PropTypes.func.isRequired,
   products: PropTypes.array.isRequired,
-  clickCard: PropTypes.func.isRequired,
   clicked: PropTypes.object.isRequired,
 }
 
@@ -45,4 +42,4 @@ const mapStateToProps = state => ({
   clicked: state.click.clickedCard,
 })
 
-export default connect(mapStateToProps, {fetchProducts, clickCard})(AllProductsList)
+export default connect(mapStateToProps, {fetchProducts})(AllProductsList)

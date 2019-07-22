@@ -1,10 +1,10 @@
 // ProductView is the product 'Details' page
 import React, { Component } from 'react';
 import ReactImageMagnify from 'react-image-magnify';
-import propTypes from 'prop-types';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { postCartitem } from '../actions/cartitemAction.js';
-import { clickClose } from '../actions/clickAction.js';
+import { clickClose, clickCard } from '../actions/clickAction.js';
 
 class ProductView extends Component {
 
@@ -97,4 +97,15 @@ class ProductView extends Component {
 }
 
 
-export default connect(null, { postCartitem, clickClose })(ProductView)
+ProductView.propTypes = {
+  postCartitem: PropTypes.func.isRequired,
+  clickCard: PropTypes.func.isRequired,
+  clickClose: PropTypes.func.isRequired,
+  clickedProduct: PropTypes.object.isRequired,
+}
+
+const mapStateToProps = state => ({
+  clickedProduct: state.click.clickedCard,
+})
+
+export default connect(mapStateToProps, { postCartitem, clickClose, clickCard })(ProductView)

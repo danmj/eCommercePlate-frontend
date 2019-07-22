@@ -24,11 +24,6 @@ class ProductCard extends Component {
 
 ProductCard.propTypes = {
   clickCard: PropTypes.func.isRequired,
-  clicked: PropTypes.object.isRequired,
 }
 
-const mapStateToprops = state => ({
-  clicked: state.click.clickedCard,
-})
-
-export default connect(mapStateToprops, {clickCard})(ProductCard)
+export default connect(null, {clickCard})(ProductCard)
