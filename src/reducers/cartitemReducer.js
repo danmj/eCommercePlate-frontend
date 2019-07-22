@@ -2,7 +2,6 @@ import { FETCH_CART, POST_CARTITEM, DELETE_CARTITEM, GET_TOTAL } from '../action
 
 const initialState = {
   userCart: [],
-  cartItem: {},
   total: 0
 }
 
@@ -24,12 +23,6 @@ export default function(state = initialState, action) {
       return {
         ...state,
         total: summedTotal
-      };
-
-    case POST_CARTITEM:
-      return {
-        ...state,
-        cartItem: action.payload
       };
 
     case DELETE_CARTITEM:
