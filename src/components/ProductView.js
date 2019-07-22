@@ -37,7 +37,6 @@ class ProductView extends Component {
     this.props.postCartitem(cartitem)
   }
 
-
   render() {
     return(
       <div style={{ backgroundColor: '#eeeeee' }}>
