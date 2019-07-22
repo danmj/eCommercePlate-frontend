@@ -1,7 +1,7 @@
 import { FETCH_CART } from './types';
 import { POST_CARTITEM } from './types';
 import { DELETE_CARTITEM } from './types';
-import { GET_QUANTITY } from './types';
+import { GET_TOTAL } from './types';
 
 export const fetchCart = () => dispatch => {
   fetch('http://localhost:3000/api/v1/cartitems/')
@@ -13,12 +13,12 @@ export const fetchCart = () => dispatch => {
     }))
 }
 
-export const getQuantity = () => dispatch => {
+export const getTotal = () => dispatch => {
   fetch('http://localhost:3000/api/v1/cartitems/')
     .then(res => res.json())
     .then(cartjson =>
       dispatch({
-        type: GET_QUANTITY,
+        type: GET_TOTAL,
         payload: cartjson
     }))
 }

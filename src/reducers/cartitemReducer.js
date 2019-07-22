@@ -1,4 +1,4 @@
-import { FETCH_CART, POST_CARTITEM, DELETE_CARTITEM, GET_QUANTITY} from '../actions/types';
+import { FETCH_CART, POST_CARTITEM, DELETE_CARTITEM, GET_TOTAL } from '../actions/types';
 
 const initialState = {
   userCart: [],
@@ -14,7 +14,7 @@ export default function(state = initialState, action) {
         userCart: action.payload
       };
 
-    case GET_QUANTITY:
+    case GET_TOTAL:
       const prices = action.payload.map((cartObj) =>
         (cartObj.price * cartObj.quantity))
       let summedTotal = 0

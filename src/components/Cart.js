@@ -2,13 +2,13 @@ import React, { Component } from 'react';
 import CartItem from './CartItem.js';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { fetchCart, getQuantity, deleteCartitem } from '../actions/cartitemAction.js';
+import { fetchCart, getTotal, deleteCartitem } from '../actions/cartitemAction.js';
 
 class Cart extends Component {
 
   componentDidMount() {
     this.props.fetchCart()
-    this.props.getQuantity()
+    this.props.getTotal()
   }
 
   removeItem = (obj) => {
@@ -92,7 +92,7 @@ class Cart extends Component {
 
 Cart.propTypes = {
   fetchCart: PropTypes.func.isRequired,
-  getQuantity: PropTypes.func.isRequired,
+  getTotal: PropTypes.func.isRequired,
   deleteCartitem: PropTypes.func.isRequired,
   cart: PropTypes.array.isRequired,
   sum: PropTypes.number.isRequired
@@ -103,4 +103,4 @@ const mapStateToProps = state => ({
   sum: state.cart.total,
 })
 
-export default connect(mapStateToProps, {fetchCart, getQuantity, deleteCartitem})(Cart)
+export default connect(mapStateToProps, {fetchCart, getTotal, deleteCartitem})(Cart)
