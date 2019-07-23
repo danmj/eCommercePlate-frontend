@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Events = (props) => {
+const Events = () => {
 
   return(
     <div className="container py-5" style={{ backgroundColor: '#eeeeee' }}>

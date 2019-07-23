@@ -4,6 +4,3 @@ export const FETCH_CART = 'FETCH_CART'
 export const GET_TOTAL = 'GET_TOTAL'
 export const POST_CARTITEM = 'POST_CARTITEM'
 export const DELETE_CARTITEM = 'DELETE_CARTITEM'
-
-export const CLICK_CARD = 'CLICK_CARD'
-export const CLICK_CLOSE = 'CLICK_CLOSE'

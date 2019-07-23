@@ -4,7 +4,6 @@ import ReactImageMagnify from 'react-image-magnify';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { postCartitem } from '../actions/cartitemAction.js';
-import { clickClose, clickCard } from '../actions/clickAction.js';
 
 class ProductView extends Component {
 
@@ -17,7 +16,7 @@ class ProductView extends Component {
   }
 
   backClickHandler = () => {
-    this.props.clickClose()
+    window.history.back()
   }
 
   quantityChangeReader = (e) => {
@@ -28,19 +27,18 @@ class ProductView extends Component {
     this.setState({ buttonMessage: 'Added to cart'})
     const cartitem = {
       user_id: 1,
-      product_id: this.props.clickedProduct.id,
+      product_id: this.props.products[this.props.match.params.productId].id,
       quantity: this.state.quantity,
-      name: this.props.clickedProduct.name,
-      price: this.props.clickedProduct.price,
-      photo: this.props.clickedProduct.photos[1].url
+      name: this.props.products[this.props.match.params.productId].name,
+      price: this.props.products[this.props.match.params.productId].price,
+      photo: this.props.products[this.props.match.params.productId].photos[1].url,
     }
     this.props.postCartitem(cartitem)
   }
 
-  render() {
-    return(
-      <div style={{ backgroundColor: '#eeeeee' }}>
-
+  renderView = () => {
+    if(this.props.products.length > 0) {
+      return(
         <div className="container" style={{ backgroundColor: 'white' }}>
           <div style={{ textAlign: 'right' }}>
             <ion-icon name="close-circle-outline" onClick={() => this.backClickHandler()}></ion-icon>
@@ -54,10 +52,10 @@ class ProductView extends Component {
                 isFluidWidth: false,
                 width: 360,
                 height: 500,
-                src: this.props.clickedProduct.photos[1].url
+                src: this.props.products[this.props.match.params.productId].photos[1].url,
             },
             largeImage: {
-                src: this.props.clickedProduct.photos[1].url,
+                src: this.props.products[this.props.match.params.productId].photos[1].url,
                 width: 1200,
                 height: 1800,
             }
@@ -66,12 +64,12 @@ class ProductView extends Component {
             </div>
 
             <div className="col-md-4">
-              <h1 className="my-4">{this.props.clickedProduct.name}</h1>
-              <h3>${parseFloat(this.props.clickedProduct.price).toFixed(2)}</h3>
+              <h1 className="my-4">{this.props.products[this.props.match.params.productId].name}</h1>
+              <h3>${parseFloat(this.props.products[this.props.match.params.productId].price).toFixed(2)}</h3>
 
-              <p>{this.props.clickedProduct.description}</p>
-              <p>{this.props.clickedProduct.comment}</p>
-              <p>{this.props.clickedProduct.subtitle}</p>
+              <p>{this.props.products[this.props.match.params.productId].description}</p>
+              <p>{this.props.products[this.props.match.params.productId].comment}</p>
+              <p>{this.props.products[this.props.match.params.productId].subtitle}</p>
 
 
               <select className="custom-select" style={{ maxWidth: '260px' }} value={this.props.quantityValue} onChange={(e) => this.quantityChangeReader(e)}>
@@ -89,22 +87,30 @@ class ProductView extends Component {
                 <button className="btn btn-secondary" style={{ maxWidth: '260px' }} onClick={() => this.addToCartClickHandler()}>{this.state.buttonMessage}</button>
             </div>
           </div>
+        </div>
+      )
+    }
+    else{
+      return null
+    }
+  }
+
+  render() {
+    return(
+      <div style={{ backgroundColor: '#eeeeee' }}>
+        {this.renderView()}
       </div>
-    </div>
     )
   }
 }
 
-
 ProductView.propTypes = {
   postCartitem: PropTypes.func.isRequired,
-  clickCard: PropTypes.func.isRequired,
-  clickClose: PropTypes.func.isRequired,
-  clickedProduct: PropTypes.object.isRequired,
+  products: PropTypes.array.isRequired,
 }
 
 const mapStateToProps = state => ({
-  clickedProduct: state.click.clickedCard,
+  products: state.products.items,
 })
 
-export default connect(mapStateToProps, { postCartitem, clickClose, clickCard })(ProductView)
+export default connect(mapStateToProps, { postCartitem })(ProductView)

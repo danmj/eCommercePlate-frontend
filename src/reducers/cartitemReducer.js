@@ -2,7 +2,7 @@ import { FETCH_CART, POST_CARTITEM, DELETE_CARTITEM, GET_TOTAL } from '../action
 
 const initialState = {
   userCart: [],
-  total: 0
+  total: 0,
 }
 
 export default function(state = initialState, action) {

@@ -1,25 +1,14 @@
 import React, { Component } from 'react';
 import ProductCard from '../components/ProductCard.js';
-import ProductView from '../components/ProductView.js';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { fetchProducts } from '../actions/productAction.js';
 
 class AllProductsList extends Component {
 
-  componentDidMount() {
-    this.props.fetchProducts()
-  }
-
   renderDiv = () => {
-    if(typeof(this.props.clicked) === "object") {
-      return <ProductView />
-    }
-    else{
-      return this.props.products.map((product) =>
-        <ProductCard key={product.id} product={product} />
-      )
-    }
+    return this.props.products.map((product) =>
+      <ProductCard key={product.id} product={product} />
+    )
   }
 
   render() {
@@ -32,14 +21,11 @@ class AllProductsList extends Component {
 }
 
 AllProductsList.propTypes = {
-  fetchProducts: PropTypes.func.isRequired,
   products: PropTypes.array.isRequired,
-  clicked: PropTypes.object.isRequired,
 }
 
 const mapStateToProps = state => ({
   products: state.products.items,
-  clicked: state.click.clickedCard,
 })
 
-export default connect(mapStateToProps, {fetchProducts})(AllProductsList)
+export default connect(mapStateToProps, {})(AllProductsList)

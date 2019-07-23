@@ -1,6 +1,6 @@
 import React from 'react';
 
-const OurStory = (props) => {
+const OurStory = () => {
 
   return(
     <div style={{ textAlign: 'center', paddingLeft: '25px', paddingRight: '25px' }}>

@@ -1,14 +1,11 @@
-import React, { Component } from 'react';
+import React from 'react';
 import ProductView from '../components/ProductView.js';
+import { Route } from 'react-router-dom';
 
-export default class ProductViewContainer extends Component {
+const ProductViewContainer = ({ match, products }) => (
+  <div>
+      <Route path={`${match.url}/:productId`} render={routerProps => <ProductView {...routerProps} /> }/>
+  </div>
+)
 
-  render() {
-    return(
-      <div>
-        <ProductView />
-      </div>
-      )
-    }
-
-}
+export default ProductViewContainer

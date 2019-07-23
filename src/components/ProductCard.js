@@ -1,29 +1,20 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { fetchProducts } from '../actions/productAction.js';
-import { clickCard } from '../actions/clickAction.js';
+import { Link } from 'react-router-dom';
 
-class ProductCard extends Component {
+const ProductCard = (props) => {
 
-  detailClickHandler = () => {
-    this.props.clickCard(this.props.product)
-  }
-
-  render() {
-    return(
-      <div className='product-card' style={{ border: 'transparent' }} onClick={this.detailClickHandler}>
+  return(
+    <Link key={props.product.id} to={`/product/${props.product.id - 1}`}>
+      <div className='product-card' style={{ border: 'transparent' }}>
           <div className="card-body">
-            <img alt='product card thumb' src={this.props.product.photos[1].url} style={{ height: '300px', width: '300px' }}/>
-            <h6 className="product-card-text" style={{ textAlign: 'left' }}><b>{this.props.product.name}</b>  ${parseFloat(this.props.product.price).toFixed(2)}</h6>
+            <img alt='product card thumb' src={props.product.photos[1].url} style={{ height: '300px', width: '300px' }}/>
+            <h6 className="product-card-text" style={{ textAlign: 'left' }}><b>{props.product.name}</b>  ${parseFloat(props.product.price).toFixed(2)}</h6>
           </div>
       </div>
-    )
-  }
+    </Link>
+  )
 }
 
-ProductCard.propTypes = {
-  clickCard: PropTypes.func.isRequired,
-}
-
-export default connect(null, {clickCard})(ProductCard)
+export default ProductCard

@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { NavLink } from 'react-router-dom';
 
-const Carousel = (props) => {
+const Carousel = () => {
 
   return (
     <div id="carouselExampleIndicators" className="carousel slide" data-ride="carousel" style={{ height: "auto" }}>
