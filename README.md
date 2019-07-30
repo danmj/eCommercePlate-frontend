@@ -1,8 +1,10 @@
 # eCommerce Plate
 
+A React.js boilerplate for a modern eCommerce website that can be customized to fit the individual seller's needs. Features product list pages, product view pages, shopping cart and an 'About' and 'Events' page. Served by a backend database that holds each product item, users, and the shopping cart of each user.
+
 ## Instalation & Setup
 
-There is a back end API that serves this site that can be found in the repository [github.com/danmj/new_site_backend](https://github.com/danmj/new_site_backend)
+There is a backend database that serves this site that can be found in the repository [github.com/danmj/new_site_backend](https://github.com/danmj/new_site_backend)
 
 To access to the full features of this site, please complete the following three steps:
 
