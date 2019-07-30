@@ -1,7 +1,10 @@
+// CartItem is each individual row in the shopping cart.
+// Each row corresponds to a product, holding it's image, name, price and quantity.
 import React from 'react';
 
 const CartItem = (props) => {
 
+  // Reads the clicking of the 'delete' icon.
   const removeItem = (obj) => {
     props.removeItem(props.cartObj)
   }

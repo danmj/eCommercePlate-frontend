@@ -1,4 +1,5 @@
-// ProductView is the product 'Details' page
+// ProductView is the product 'Details' page that comes up when you click
+// a CardItem from a product list.
 import React, { Component } from 'react';
 import ReactImageMagnify from 'react-image-magnify';
 import PropTypes from 'prop-types';
@@ -10,19 +11,45 @@ class ProductView extends Component {
   constructor(props) {
     super(props)
     this.state = {
+      // Holds the message displayed on the add to cart button
       buttonMessage: 'Add to cart',
+
+      // Holds the quantity selected by user input
       quantity: 0,
     }
   }
 
+  // Allows the user to close the ProductView component
+  // by pressing the escape button.
+  escFunction(event){
+    if(event.keyCode === 27) {
+      window.history.back()
+    }
+    else {
+      return null
+    }
+  }
+  componentDidMount(){
+    document.addEventListener("keydown", this.escFunction, false);
+  }
+  componentWillUnmount(){
+    document.removeEventListener("keydown", this.escFunction, false);
+  }
+
+  // Allows the user to close the ProductView component
+  // by clicking on the 'X' button.
   backClickHandler = () => {
     window.history.back()
   }
 
+  // Reads the quantity figure from the dropdown input
   quantityChangeReader = (e) => {
-    this.setState({ quantity: e.target.value })
+    this.setState({ quantity: e.target.value }, () => console.log(this.props.products[this.props.match.params.productId]))
   }
 
+  // Stores the item data as a variable 'cartitem' when user presses the
+  // 'Add to cart' button. Changes the message on the button as confirmation
+  // and sends the variable 'cartitem' to the POST action.
   addToCartClickHandler = () => {
     this.setState({ buttonMessage: 'Added to cart'})
     const cartitem = {
@@ -36,6 +63,7 @@ class ProductView extends Component {
     this.props.postCartitem(cartitem)
   }
 
+  // Product data for the ProductView component
   renderView = () => {
     if(this.props.products.length > 0) {
       return(

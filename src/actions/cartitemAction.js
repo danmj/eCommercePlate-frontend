@@ -3,6 +3,7 @@ import { POST_CARTITEM } from './types';
 import { DELETE_CARTITEM } from './types';
 import { GET_TOTAL } from './types';
 
+// Action to FETCH items from the cartitems table in the database
 export const fetchCart = () => dispatch => {
   fetch('http://localhost:3000/api/v1/cartitems/')
     .then(res => res.json())
@@ -13,6 +14,7 @@ export const fetchCart = () => dispatch => {
     }))
 }
 
+// Action to receive the total number of items from the cart
 export const getTotal = () => dispatch => {
   fetch('http://localhost:3000/api/v1/cartitems/')
     .then(res => res.json())
@@ -23,6 +25,7 @@ export const getTotal = () => dispatch => {
     }))
 }
 
+// Action to POST items to the cartitems table when it is added to the cart
 export const postCartitem = cartitem => dispatch => {
   fetch('http://localhost:3000/api/v1/cartitems', {
       method: "POST",
@@ -32,13 +35,14 @@ export const postCartitem = cartitem => dispatch => {
       body: JSON.stringify(cartitem)
   })
     .then(res => res.json())
-    .then(data =>
+    .then(data =>{
       dispatch({
         type: POST_CARTITEM,
         payload: cartitem
-    }))
+    })})
 }
 
+// Action to DELETE items from the cartitems table when delete button is pressed
 export const deleteCartitem = obj => dispatch => {
   fetch(`http://localhost:3000/api/v1/cartitems/${obj.id}`, {
     method: 'delete'

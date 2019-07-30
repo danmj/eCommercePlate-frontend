@@ -1,3 +1,5 @@
+// Parent component of ProductView.js
+// Holds the parent routes for the ProductView pages
 import React from 'react';
 import ProductView from '../components/ProductView.js';
 import { Route } from 'react-router-dom';

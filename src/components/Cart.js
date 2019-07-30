@@ -1,3 +1,6 @@
+// The 'shopping cart' page, accessed by the icon in the top right of the navigation bar.
+// Displays a table with each row being a 'CartItem' and a second table that
+// calculates the sum of the items in the cart.
 import React, { Component } from 'react';
 import CartItem from './CartItem.js';
 import PropTypes from 'prop-types';
@@ -6,15 +9,21 @@ import { fetchCart, getTotal, deleteCartitem } from '../actions/cartitemAction.j
 
 class Cart extends Component {
 
+  // Receives the cart items data from the database and the total calculated in
+  // the cartItemReducer
   componentDidMount() {
     this.props.fetchCart()
     this.props.getTotal()
   }
 
+  // Handles the removal of an item from the cart by passing it to the DELETE
+  // method in the cartItemAction
   removeItem = (obj) => {
     this.props.deleteCartitem(obj)
   }
 
+  // Creates each (CartItem) row in the cart table
+  // If the cart is empty it will display the empty message.
   createCartItem = () => {
     if(this.props.cart.length > 0) {
       return this.props.cart.map((cartObj) =>

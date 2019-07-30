@@ -1,7 +1,9 @@
+// The 'Our Story' page of the website.
 import React from 'react';
 
 const OurStory = () => {
 
+  // You want to edit and replace the text here fit your own data.
   return(
     <div style={{ textAlign: 'center', paddingLeft: '25px', paddingRight: '25px' }}>
       <h2 style={{ padding: '40px' }}>Our Story</h2>

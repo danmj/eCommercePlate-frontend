@@ -1,9 +1,10 @@
+// Functional component for the carousel display on the homepage.
+// With NavLinks corresponding to different component routes.
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 
 const Carousel = () => {
-
-  return (
+  return(
     <div id="carouselExampleIndicators" className="carousel slide" data-ride="carousel" style={{ height: "auto" }}>
       <ol className="carousel-indicators">
       <li data-target="#carouselExampleIndicators" data-slide-to="0" className="active"></li>

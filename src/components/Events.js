@@ -1,7 +1,9 @@
+// The 'Events' page on the website. Formatted as a timeline.
 import React from 'react';
 
 const Events = () => {
 
+  // You want to edit the text here to fit your own data.
   return(
     <div className="container py-5" style={{ backgroundColor: '#eeeeee' }}>
 

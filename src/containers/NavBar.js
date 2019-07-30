@@ -1,3 +1,5 @@
+// Navigation bar at the top of the website.
+// With NavLinks corresponding to different component routes.
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 
@@ -55,8 +57,6 @@ const NavBar = () => {
         </nav>
       </div>
     );
-
-
 }
 
 export default NavBar

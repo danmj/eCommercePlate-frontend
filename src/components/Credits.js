@@ -1,8 +1,10 @@
+// The credits footer at the bottom of the page.
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 
 const Credits = () => {
 
+  //You want to edit the text here to fit your own data.
   return(
     <div className="credits-section">
 

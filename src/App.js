@@ -1,3 +1,4 @@
+// Application imports
 import React, { Component } from 'react';
 import './App.css';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
@@ -6,6 +7,8 @@ import store from './store.js';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
+
+// Component imports
 import NavBar from './containers/NavBar.js';
 import Carousel from './components/Carousel.js';
 import OurStory from './components/OurStory.js';
@@ -22,12 +25,14 @@ import { fetchProducts } from './actions/productAction.js';
 
 class App extends Component {
 
+  // Fetching product data from backend on the top component in order to pass it
+  // to the routed components.
   componentDidMount() {
     this.props.fetchProducts()
   }
 
   render() {
-    return (
+    return(
       <Provider store={store}>
         <Router>
           <NavBar />
