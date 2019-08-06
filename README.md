@@ -1,5 +1,7 @@
 # eCommerce Plate
 
+https://media.giphy.com/media/XfW2jjx4XUOeO02awk/giphy.gif
+
 A React.js boilerplate for a modern eCommerce website that can be customized to fit the individual seller's needs. Features product list pages, product view pages, shopping cart and an 'About' and 'Events' page. Served by a backend database that holds each product item, users, and the shopping cart of each user.
 
 ## Instalation & Setup
