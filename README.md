@@ -4,11 +4,11 @@ A React.js boilerplate for a modern eCommerce website that can be customized to 
 
 ## Installation & Setup
 
-There is a backend database that serves this site that can be found in the repository [github.com/danmj/new_site_backend](https://github.com/danmj/new_site_backend)
+There is a backend database that serves this site that can be found at the repository https://github.com/danmj/eCommercePlate-backend
 
 To access to the full features of this site, please complete the following three steps:
 
-1. Host the back-end server (found at [github.com/danmj/new_site_backend](https://github.com/danmj/new_site_backend)) on localhost:3000
+1. Host the [back-end server](https://github.com/danmj/eCommercePlate-backend) on localhost:3000
 2. CD into this repository and run ```bundle install```
 2. Start-up the frontend development server using ```npm start```
 
