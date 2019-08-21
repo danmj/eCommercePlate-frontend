@@ -4,7 +4,7 @@ import { NavLink } from 'react-router-dom';
 
 const Credits = () => {
 
-  //You want to edit the text here to fit your own data.
+  // You want to edit the text here to fit your own data.
   return(
     <div className="credits-section">
 
