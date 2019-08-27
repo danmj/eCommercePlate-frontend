@@ -1,4 +1,4 @@
-import { FETCH_CART, POST_CARTITEM, DELETE_CARTITEM, GET_TOTAL } from '../actions/types';
+import { FETCH_CART, DELETE_CARTITEM, GET_TOTAL } from '../actions/types';
 
 const initialState = {
   userCart: [],

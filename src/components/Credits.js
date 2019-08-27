@@ -1,61 +1,38 @@
 // The credits footer at the bottom of the page.
 import React from 'react';
-import { NavLink } from 'react-router-dom';
 
 const Credits = () => {
 
   // You want to edit the text here to fit your own data.
   return(
     <div className="credits-section">
-
       <footer className="page-footer font-small blue pt-4">
       <div className="container-fluid text-center text-md-left">
         <div className="row">
           <div className="col-md-6 mt-md-0 mt-3">
-            <h5 className="text-uppercase">Project Site</h5>
-
-            <p>Special thanks to: </p>
-            <ul style={{ fontSize: '10px' }}>
-              <li>Bootstrap</li>
-              <li>Ion-Icons</li>
-              <li>Popper.js</li>
-              <li>React-Shopping-Cart</li>
-              <li>React-Image-Magnify</li>
-            </ul>
-
+            <h5 className="text-uppercase">eCommercePlate</h5>
+            <p>Customizable template for eCommerce sites.</p>
           </div>
           <hr className="clearfix w-100 d-md-none pb-3" />
           <div className="col-md-3 mb-md-0 mb-3">
             <h5 className="text-uppercase">Site Map</h5>
-
             <ul className="list-unstyled">
               <li>
-                <NavLink to='/' exact>
-                  <a href="#!" className="credit-text">Home</a>
-                </NavLink>
+                <a href="/" className="credit-text">Home</a>
               </li>
               <li>
-                <NavLink to='/about' exact>
-                  <a href="#!" className="credit-text">Our Story</a>
-                </NavLink>
+                <a href="/about" className="credit-text">Our Story</a>
               </li>
               <li>
-                <NavLink to='/products/all' exact>
-                  <a href="#!" className="credit-text">All Products</a>
-                </NavLink>
+                <a href="/products/all" className="credit-text">All Products</a>
               </li>
               <li>
-                <NavLink to='/events' exact>
-                  <a href="#!" className="credit-text">Events</a>
-                </NavLink>
+                <a href="/events" className="credit-text">Events</a>
               </li>
             </ul>
-
           </div>
-
           <div className="col-md-3 mb-md-0 mb-3">
             <h5 className="text-uppercase">Social</h5>
-
             <ul className="list-unstyled">
               <li>
                 <a href="#!" className="credit-text">Instagram</a>

@@ -20,7 +20,6 @@ import EarringsList from './containers/EarringsList.js';
 import Credits from './components/Credits.js';
 import ProductViewContainer from './containers/ProductViewContainer.js';
 import Cart from './components/Cart.js';
-import ProductView from './components/ProductView.js';
 import { fetchProducts } from './actions/productAction.js';
 
 class App extends Component {

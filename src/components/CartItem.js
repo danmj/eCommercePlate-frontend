@@ -15,13 +15,13 @@ const CartItem = (props) => {
         <div className="p-2">
           <img src={props.cartObj.photo} alt="cart" width="70" className="img-fluid rounded shadow-sm" />
           <div className="ml-3 d-inline-block align-middle">
-            <h5 className="mb-0"> <a href="#" className="text-dark d-inline-block align-middle">{props.cartObj.name}</a></h5><span className="text-muted font-weight-normal font-italic d-block">{props.cartObj.type_id}</span>
+            <h5 className="mb-0"> <a href={`/product/${props.cartObj.product_id - 1}`} className="text-dark d-inline-block align-middle">{props.cartObj.name}</a></h5><span className="text-muted font-weight-normal font-italic d-block">{props.cartObj.type_id}</span>
           </div>
         </div>
       </th>
       <td className="border-0 align-middle"><strong>{(props.cartObj.price).toFixed(2)}</strong></td>
       <td className="border-0 align-middle"><strong>{props.cartObj.quantity}</strong></td>
-      <td className="border-0 align-middle"><a href="#" className="text-dark"><ion-icon name="trash" onClick={() => removeItem()}></ion-icon></a></td>
+      <td className="border-0 align-middle"><a href="#!" className="text-dark"><i className="far fa-trash-alt" onClick={() => removeItem()}></i></a></td>
     </tr>
   )
 }

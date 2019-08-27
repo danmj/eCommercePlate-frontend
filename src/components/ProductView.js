@@ -69,7 +69,7 @@ class ProductView extends Component {
       return(
         <div className="container" style={{ backgroundColor: 'white' }}>
           <div style={{ textAlign: 'right' }}>
-            <ion-icon name="close-circle-outline" onClick={() => this.backClickHandler()}></ion-icon>
+            <i className="far fa-times-circle" onClick={() => this.backClickHandler()}></i>
           </div>
           <div className="row">
             <div className="col-md-8">
