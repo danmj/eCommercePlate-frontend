@@ -2,12 +2,6 @@
   text-align: center;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
-  pointer-events: none;
-}
-
 .App-header {
   background-color: #282c34;
   min-height: 100vh;
@@ -23,30 +17,100 @@
   color: #61dafb;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-ion-icon {
-  font-size: 28px;
-}
-
 .credits-section {
   color: white;
   background-color: grey;
 }
 
-/* .product-card-mouseover-true {
-  color: #4e555c !important;
-} */
+.credit-text {
+  color: white;
+}
 
-/* Image zoom styling starts here */
+/* CAROUSEL begins here*/
+.carousel-item {
+  position: relative;
 
+}
+
+.carousel-item img {
+  width: 100%;
+  height: auto;
+}
+
+.carousel-item .btn {
+  position: absolute;
+  top: 44%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  font-size: 16px;
+  padding: 12px 24px;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  width: 175px;
+}
+
+.carousel-item .btn:hover {
+  background-color: black;
+}
+/* CAROUSEL ends here */
+
+
+/* TIMELINE begins here */
+/* Timeline holder */
+ul.timeline {
+    list-style-type: none;
+    position: relative;
+    padding-left: 1.5rem;
+}
+
+ /* Timeline vertical line */
+ul.timeline:before {
+    content: ' ';
+    background: #fff;
+    display: inline-block;
+    position: absolute;
+    left: 16px;
+    width: 4px;
+    height: 100%;
+    z-index: 400;
+    border-radius: 1rem;
+}
+
+li.timeline-item {
+    margin: 20px 0;
+}
+
+/* Timeline item arrow */
+.timeline-arrow {
+    border-top: 0.5rem solid transparent;
+    border-right: 0.5rem solid #fff;
+    border-bottom: 0.5rem solid transparent;
+    display: block;
+    position: absolute;
+    left: 2rem;
+}
+
+/* Timeline item circle marker */
+li.timeline-item::before {
+    content: ' ';
+    background: #ddd;
+    display: inline-block;
+    position: absolute;
+    border-radius: 50%;
+    border: 3px solid #fff;
+    left: 11px;
+    width: 14px;
+    height: 14px;
+    z-index: 400;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}
+/* TIMELINE ends here */
+
+/* ZOOM starts here */
 .fluid {
   max-width: 1200px;
   margin: 0 auto;
@@ -105,97 +169,4 @@ a:hover {
     left: -30px;
   }
 }
-/* Image zoom styling ends here */
-
-.credit-text {
-  color: white;
-}
-
-
-
-/* CAROUSEL */
-
-
-
-.carousel-item {
-  position: relative;
-
-}
-
-/* Make the image responsive */
-.carousel-item img {
-  width: 100%;
-  height: auto;
-}
-
-/* Style the button and place it in the middle of the container/image */
-.carousel-item .btn {
-  position: absolute;
-  top: 44%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  -ms-transform: translate(-50%, -50%);
-  background-color: rgba(0, 0, 0, 0.5);
-  color: white;
-  font-size: 16px;
-  padding: 12px 24px;
-  border: none;
-  cursor: pointer;
-  border-radius: 5px;
-  width: 175px;
-}
-
-.carousel-item .btn:hover {
-  background-color: black;
-}
-
-/* TIMELINE STYLES BEGIN HERE */
-
-/* Timeline holder */
-ul.timeline {
-    list-style-type: none;
-    position: relative;
-    padding-left: 1.5rem;
-}
-
- /* Timeline vertical line */
-ul.timeline:before {
-    content: ' ';
-    background: #fff;
-    display: inline-block;
-    position: absolute;
-    left: 16px;
-    width: 4px;
-    height: 100%;
-    z-index: 400;
-    border-radius: 1rem;
-}
-
-li.timeline-item {
-    margin: 20px 0;
-}
-
-/* Timeline item arrow */
-.timeline-arrow {
-    border-top: 0.5rem solid transparent;
-    border-right: 0.5rem solid #fff;
-    border-bottom: 0.5rem solid transparent;
-    display: block;
-    position: absolute;
-    left: 2rem;
-}
-
-/* Timeline item circle marker */
-li.timeline-item::before {
-    content: ' ';
-    background: #ddd;
-    display: inline-block;
-    position: absolute;
-    border-radius: 50%;
-    border: 3px solid #fff;
-    left: 11px;
-    width: 14px;
-    height: 14px;
-    z-index: 400;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
-}
+/* ZOOM ends here */

@@ -34,17 +34,19 @@ class App extends Component {
     return(
       <Provider store={store}>
         <Router>
-          <NavBar />
-          <Route exact path="/" component={Carousel} />
-          <Route exact path="/about" component={OurStory} />
-          <Route exact path="/products/necklaces" component={NecklacesList} />
-          <Route exact path="/products/bracelets" component={BraceletsList} />
-          <Route exact path="/products/earrings" component={EarringsList} />
-          <Route exact path="/products/all" component={AllProductsList} />
-          <Route exact path="/events" component={Events} />
-          <Route exact path="/cart" component={Cart} />
-          <Route path='/product' render={routerProps => <ProductViewContainer {...routerProps} />} />
-          <Credits />
+          <React.Fragment>
+            <NavBar />
+            <Route exact path="/" component={Carousel} />
+            <Route exact path="/about" component={OurStory} />
+            <Route exact path="/products/necklaces" component={NecklacesList} />
+            <Route exact path="/products/bracelets" component={BraceletsList} />
+            <Route exact path="/products/earrings" component={EarringsList} />
+            <Route exact path="/products/all" component={AllProductsList} />
+            <Route exact path="/events" component={Events} />
+            <Route exact path="/cart" component={Cart} />
+            <Route path='/product' render={routerProps => <ProductViewContainer {...routerProps} />} />
+            <Credits />
+          </React.Fragment>
         </Router>
       </Provider>
     );
