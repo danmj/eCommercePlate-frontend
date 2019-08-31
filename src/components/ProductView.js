@@ -1,27 +1,25 @@
 // ProductView is the product 'Details' page that comes up when you click
 // a CardItem from a product list.
-import React, { Component } from 'react';
+import React, { useState, useEffect } from 'react';
 import ReactImageMagnify from 'react-image-magnify';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { postCartitem } from '../actions/cartitemAction.js';
 
-class ProductView extends Component {
+const ProductView = (props) => {
 
-  constructor(props) {
-    super(props)
-    this.state = {
-      // Holds the message displayed on the add to cart button
-      buttonMessage: 'Add to cart',
+  // State hook for message on "add to cart" button
+  const [buttonMessage, setButtonMessage] = useState("Add to cart");
 
-      // Holds the quantity selected by user input
-      quantity: 0,
-    }
+  // State hook for user-selected quantity
+  const [quantity, setQuantity] = useState(0);
+
+  // Handles the 'close' button by returning user to previous page
+  const backClickHandler = () => {
+    window.history.back()
   }
 
-  // Allows the user to close the ProductView component
-  // by pressing the escape button.
-  escFunction(event){
+  const escFunction = (event) => {
     if(event.keyCode === 27) {
       window.history.back()
     }
@@ -29,47 +27,50 @@ class ProductView extends Component {
       return null
     }
   }
-  componentDidMount(){
-    document.addEventListener("keydown", this.escFunction, false);
-  }
-  componentWillUnmount(){
-    document.removeEventListener("keydown", this.escFunction, false);
-  }
 
-  // Allows the user to close the ProductView component
-  // by clicking on the 'X' button.
-  backClickHandler = () => {
-    window.history.back()
-  }
+  useEffect(() => {
+    document.addEventListener("keydown", escFunction, false);
+    return () => {
+      document.removeEventListener("keydown", escFunction, false);
+    }
+  })
+
+
 
   // Reads the quantity figure from the dropdown input
-  quantityChangeReader = (e) => {
-    this.setState({ quantity: e.target.value }, () => console.log(this.props.products[this.props.match.params.productId]))
+  const quantityChangeReader = (e) => {
+    setQuantity(e.target.value)
+    //this.setState({ quantity: e.target.value })
   }
 
   // Stores the item data as a variable 'cartitem' when user presses the
   // 'Add to cart' button. Changes the message on the button as confirmation
   // and sends the variable 'cartitem' to the POST action.
-  addToCartClickHandler = () => {
-    this.setState({ buttonMessage: 'Added to cart'})
-    const cartitem = {
-      user_id: 1,
-      product_id: this.props.products[this.props.match.params.productId].id,
-      quantity: this.state.quantity,
-      name: this.props.products[this.props.match.params.productId].name,
-      price: this.props.products[this.props.match.params.productId].price,
-      photo: this.props.products[this.props.match.params.productId].photos[1].url,
+  const addToCartHandler = () => {
+    if (quantity > 0) {
+      setButtonMessage("Added to cart")
+      const cartitem = {
+        user_id: 1,
+        product_id: props.products[props.match.params.productId].id,
+        quantity: quantity,
+        name: props.products[props.match.params.productId].name,
+        price: props.products[props.match.params.productId].price,
+        photo: props.products[props.match.params.productId].photos[1].url,
+      }
+      props.postCartitem(cartitem)
     }
-    this.props.postCartitem(cartitem)
+    else {
+      alert("Please select a quantity")
+    }
   }
 
   // Product data for the ProductView component
-  renderView = () => {
-    if(this.props.products.length > 0) {
+  const renderView = () => {
+    if (props.products.length > 0) {
       return(
         <div className="container" style={{ backgroundColor: 'white' }}>
           <div style={{ textAlign: 'right' }}>
-            <i className="far fa-times-circle" onClick={() => this.backClickHandler()}></i>
+            <i className="far fa-times-circle" onClick={() => backClickHandler()}></i>
           </div>
           <div className="row">
             <div className="col-md-8">
@@ -80,10 +81,10 @@ class ProductView extends Component {
                 isFluidWidth: false,
                 width: 360,
                 height: 500,
-                src: this.props.products[this.props.match.params.productId].photos[1].url,
+                src: props.products[props.match.params.productId].photos[1].url,
             },
             largeImage: {
-                src: this.props.products[this.props.match.params.productId].photos[1].url,
+                src: props.products[props.match.params.productId].photos[1].url,
                 width: 1200,
                 height: 1800,
             }
@@ -92,15 +93,15 @@ class ProductView extends Component {
             </div>
 
             <div className="col-md-4">
-              <h1 className="my-4">{this.props.products[this.props.match.params.productId].name}</h1>
-              <h3>${parseFloat(this.props.products[this.props.match.params.productId].price).toFixed(2)}</h3>
+              <h1 className="my-4">{props.products[props.match.params.productId].name}</h1>
+              <h3>${parseFloat(props.products[props.match.params.productId].price).toFixed(2)}</h3>
 
-              <p>{this.props.products[this.props.match.params.productId].description}</p>
-              <p>{this.props.products[this.props.match.params.productId].comment}</p>
-              <p>{this.props.products[this.props.match.params.productId].subtitle}</p>
+              <p>{props.products[props.match.params.productId].description}</p>
+              <p>{props.products[props.match.params.productId].comment}</p>
+              <p>{props.products[props.match.params.productId].subtitle}</p>
 
 
-              <select className="custom-select" style={{ maxWidth: '260px' }} value={this.props.quantityValue} onChange={(e) => this.quantityChangeReader(e)}>
+              <select className="custom-select" style={{ maxWidth: '260px' }} value={props.quantityValue} onChange={(e) => quantityChangeReader(e)}>
                   <option value="0">Select Quantity</option>
                   <option value="1">1</option>
                   <option value="2">2</option>
@@ -112,24 +113,24 @@ class ProductView extends Component {
                 <div style={{ padding: '4px' }}>
                 </div>
 
-                <button className="btn btn-secondary" style={{ maxWidth: '260px' }} onClick={() => this.addToCartClickHandler()}>{this.state.buttonMessage}</button>
+                <button className="btn btn-secondary" style={{ maxWidth: '260px' }} onClick={() => addToCartHandler()}>{buttonMessage}</button>
             </div>
           </div>
         </div>
       )
     }
-    else{
+    else {
       return null
     }
   }
 
-  render() {
+
     return(
       <div style={{ backgroundColor: '#eeeeee' }}>
-        {this.renderView()}
+        {renderView()}
       </div>
     )
-  }
+
 }
 
 ProductView.propTypes = {
