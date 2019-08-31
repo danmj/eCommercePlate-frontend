@@ -7,8 +7,8 @@ import { connect } from 'react-redux';
 
 class NecklacesList extends Component {
 
-  // Displaying only necklaces from the backend database, that is, only
-  // products with a type_id of 1.
+  /* Displaying only necklaces from the backend database, that is, only
+  products with a type_id of 1. */
   renderDiv = () => {
     return this.props.products
       .filter(product => product.type_id === 1)

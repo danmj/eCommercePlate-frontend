@@ -6,7 +6,7 @@ import { Route } from 'react-router-dom';
 
 const ProductViewContainer = ({ match, products }) => (
   <div>
-      <Route path={`${match.url}/:productId`} render={routerProps => <ProductView {...routerProps} /> }/>
+    <Route path={`${match.url}/:productId`} render={routerProps => <ProductView {...routerProps} /> }/>
   </div>
 )
 
