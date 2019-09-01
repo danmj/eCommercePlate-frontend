@@ -24,4 +24,4 @@ Uses the React.js framework for the frontend with Redux middleware. Backend API 
 
  This app uses the following CDNs:
   - Bootstrap
-  - Ion-Icons
+  - Font-Awesome
