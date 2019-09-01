@@ -6,7 +6,7 @@ import { Provider } from 'react-redux';
 import store from './store.js';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-
+import { fetchProducts } from './actions/productAction.js';
 
 // Component imports
 import NavBar from './containers/NavBar.js';
@@ -20,7 +20,7 @@ import EarringsList from './containers/EarringsList.js';
 import Credits from './components/Credits.js';
 import ProductViewContainer from './containers/ProductViewContainer.js';
 import Cart from './components/Cart.js';
-import { fetchProducts } from './actions/productAction.js';
+import ScrollToTop from './components/ScrollToTop.js';
 
 class App extends Component {
 
@@ -34,7 +34,7 @@ class App extends Component {
     return(
       <Provider store={store}>
         <Router>
-          <React.Fragment>
+          <ScrollToTop>
             <NavBar />
             <Route exact path="/" component={Carousel} />
             <Route exact path="/about" component={OurStory} />
@@ -46,7 +46,7 @@ class App extends Component {
             <Route exact path="/cart" component={Cart} />
             <Route path='/product' render={routerProps => <ProductViewContainer {...routerProps} />} />
             <Credits />
-          </React.Fragment>
+          </ScrollToTop>
         </Router>
       </Provider>
     );
