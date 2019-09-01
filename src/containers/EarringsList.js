@@ -19,7 +19,7 @@ class EarringsList extends Component {
 
   render() {
     return(
-      <div style={{ display: 'flex', justifyContent: 'center', flexFlow: 'row wrap', backgroundColor: '#eeeeee' }}>
+      <div className="list-container">
         {this.renderDiv()}
       </div>
     )

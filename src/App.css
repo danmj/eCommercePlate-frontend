@@ -170,3 +170,10 @@ a:hover {
   }
 }
 /* ZOOM ends here */
+
+.list-container {
+  display: flex;
+  justify-content: center;
+  flex-flow: row wrap;
+  background-color: #eeeeee;
+}
