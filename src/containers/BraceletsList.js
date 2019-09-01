@@ -2,7 +2,6 @@
 // a type_id of 2.
 import React, { Component } from 'react';
 import ProductCard from '../components/ProductCard.js';
-import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 class BraceletsList extends Component {
@@ -24,10 +23,6 @@ class BraceletsList extends Component {
       </div>
     )
   }
-}
-
-BraceletsList.propTypes = {
-  Products: PropTypes.array.isRequired,
 }
 
 const mapStateToProps = state => ({

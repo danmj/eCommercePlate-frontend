@@ -2,7 +2,6 @@
 // the database, no matter the type_id.
 import React, { Component } from 'react';
 import ProductCard from '../components/ProductCard.js';
-import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 class AllProductsList extends Component {
@@ -21,10 +20,6 @@ class AllProductsList extends Component {
       </div>
     )
   }
-}
-
-AllProductsList.propTypes = {
-  products: PropTypes.array.isRequired,
 }
 
 const mapStateToProps = state => ({
