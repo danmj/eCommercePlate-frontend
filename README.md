@@ -4,7 +4,7 @@ A React.js boilerplate for a modern eCommerce website that can be customized to 
 
 ## Installation & Setup
 
-There is a backend database that serves this site that can be found at the repository https://github.com/danmj/eCommercePlate-backend
+There is a backend database that serves this site that can be found here: https://github.com/danmj/eCommercePlate-backend
 
 To access to the full features of this site, please complete the following three steps:
 
