@@ -18,7 +18,7 @@ To access to the full features of this site, please complete the following three
 
 ## Tech/Framework
 
-Uses the React.js framework for the frontend with Redux middleware. Backend API is hosted on a Ruby on Rails server.
+Uses the React.js framework with Redux middleware. Backend API is hosted on a Ruby on Rails server.
  
 ## Credits
 
