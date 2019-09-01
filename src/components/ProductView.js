@@ -19,6 +19,7 @@ const ProductView = (props) => {
     window.history.back()
   }
 
+  // Allows esc key to have the same effect as the 'close' button
   const escFunction = (event) => {
     if(event.keyCode === 27) {
       window.history.back()
@@ -28,6 +29,7 @@ const ProductView = (props) => {
     }
   }
 
+  // Effect hook to add listener for esc feature
   useEffect(() => {
     document.addEventListener("keydown", escFunction, false);
     return () => {
@@ -35,12 +37,9 @@ const ProductView = (props) => {
     }
   })
 
-
-
   // Reads the quantity figure from the dropdown input
   const quantityChangeReader = (e) => {
     setQuantity(e.target.value)
-    //this.setState({ quantity: e.target.value })
   }
 
   // Stores the item data as a variable 'cartitem' when user presses the
@@ -48,7 +47,6 @@ const ProductView = (props) => {
   // and sends the variable 'cartitem' to the POST action.
   const addToCartHandler = () => {
     if (quantity > 0) {
-      setButtonMessage("Added to cart")
       const cartitem = {
         user_id: 1,
         product_id: props.products[props.match.params.productId].id,
@@ -58,6 +56,7 @@ const ProductView = (props) => {
         photo: props.products[props.match.params.productId].photos[1].url,
       }
       props.postCartitem(cartitem)
+      setButtonMessage("Added to cart")
     }
     else {
       alert("Please select a quantity")
@@ -124,13 +123,11 @@ const ProductView = (props) => {
     }
   }
 
-
-    return(
-      <div style={{ backgroundColor: '#eeeeee' }}>
-        {renderView()}
-      </div>
-    )
-
+  return(
+    <div style={{ backgroundColor: '#eeeeee' }}>
+      {renderView()}
+    </div>
+  )
 }
 
 ProductView.propTypes = {
