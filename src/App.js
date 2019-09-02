@@ -2,8 +2,6 @@
 import React, { Component } from 'react';
 import './App.css';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
-import { Provider } from 'react-redux';
-import store from './store.js';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { fetchProducts } from './actions/productAction.js';
@@ -32,23 +30,21 @@ class App extends Component {
 
   render() {
     return(
-      <Provider store={store}>
-        <Router>
-          <ScrollToTop>
-            <NavBar />
-            <Route exact path="/" component={Carousel} />
-            <Route exact path="/about" component={OurStory} />
-            <Route exact path="/products/necklaces" component={NecklacesList} />
-            <Route exact path="/products/bracelets" component={BraceletsList} />
-            <Route exact path="/products/earrings" component={EarringsList} />
-            <Route exact path="/products/all" component={AllProductsList} />
-            <Route exact path="/events" component={Events} />
-            <Route exact path="/cart" component={Cart} />
-            <Route path='/product' render={routerProps => <ProductViewContainer {...routerProps} />} />
-            <Credits />
-          </ScrollToTop>
-        </Router>
-      </Provider>
+      <Router>
+        <ScrollToTop>
+          <NavBar />
+          <Route exact path="/" component={Carousel} />
+          <Route exact path="/about" component={OurStory} />
+          <Route exact path="/products/necklaces" component={NecklacesList} />
+          <Route exact path="/products/bracelets" component={BraceletsList} />
+          <Route exact path="/products/earrings" component={EarringsList} />
+          <Route exact path="/products/all" component={AllProductsList} />
+          <Route exact path="/events" component={Events} />
+          <Route exact path="/cart" component={Cart} />
+          <Route path='/product' render={routerProps => <ProductViewContainer {...routerProps} />} />
+          <Credits />
+        </ScrollToTop>
+      </Router>
     );
   }
 }
