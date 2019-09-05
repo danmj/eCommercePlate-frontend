@@ -22,8 +22,7 @@ import ScrollToTop from './components/ScrollToTop.js';
 
 class App extends Component {
 
-  // Fetching product data from backend on the top component in order to pass it
-  // to the routed components.
+  // Fetching product data from backend so all routed components have access
   componentDidMount() {
     this.props.fetchProducts()
   }
