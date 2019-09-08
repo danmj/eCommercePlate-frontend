@@ -31,7 +31,7 @@ export default function(state = initialState, action) {
     // Removes item from the 'userCart' state and recalculates the total less the
     // removed item.
     case DELETE_CARTITEM:
-      const array = state.userCart.filter(obj => obj !== action.payload)
+      const array = state.userCart.filter(item => item !== action.payload)
       const originalTotal = state.total
       let newTotal = originalTotal - (action.payload.price * action.payload.quantity)
 

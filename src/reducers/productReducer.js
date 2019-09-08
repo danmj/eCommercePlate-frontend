@@ -4,7 +4,7 @@ const initialState = {
   items: [],
 }
 
-// FETCHes the products data from the database and stores it in the 'items' state
+// FETCH_PRODUCTS fetches the products data from the database and stores it in the 'items' state
 export default function(state = initialState, action) {
   switch(action.type) {
     case FETCH_PRODUCTS:
