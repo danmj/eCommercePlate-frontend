@@ -1,7 +1,4 @@
-import { FETCH_CART } from './types';
-import { POST_CARTITEM } from './types';
-import { DELETE_CARTITEM } from './types';
-import { GET_TOTAL } from './types';
+import { FETCH_CART, POST_CARTITEM, DELETE_CARTITEM, GET_TOTAL, UPDATE_CARTITEM } from './types';
 
 // Action to FETCH items from the cartitems table in the database
 export const fetchCart = () => dispatch => {
@@ -37,14 +34,34 @@ export const postCartitem = cartitem => dispatch => {
 }
 
 // Action to DELETE items from the cartitems table when delete button is pressed
-export const deleteCartitem = obj => dispatch => {
-  fetch(`http://localhost:3000/api/v1/cartitems/${obj.id}`, {
+export const deleteCartitem = itemToDelete => dispatch => {
+  fetch(`http://localhost:3000/api/v1/cartitems/${itemToDelete.id}`, {
     method: 'delete'
   })
     .then(response => response.json())
     .then(products =>
       dispatch({
         type: DELETE_CARTITEM,
-        payload: obj
+        payload: itemToDelete
     }) )
+}
+
+// Action to update the caritem's quantity
+export const updateCartitem = itemToUpdate => dispatch => {
+  fetch(`http://localhost:3000/api/v1/cartitems/${itemToUpdate.id}`, {
+      method: "PATCH",
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        quantity: itemToUpdate.quantity
+      })
+  })
+    .then(res => res.json())
+    .then(data =>{
+      dispatch({
+        type: UPDATE_CARTITEM,
+        payload: itemToUpdate
+    })})
 }

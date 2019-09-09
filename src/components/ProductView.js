@@ -4,7 +4,8 @@ import React, { useState, useEffect } from 'react';
 import ReactImageMagnify from 'react-image-magnify';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { postCartitem } from '../actions/cartitemAction.js';
+import { postCartitem, updateCartitem } from '../actions/cartitemAction.js';
+import { fetchCart } from '../actions/cartitemAction.js';
 
 const ProductView = (props) => {
 
@@ -31,11 +32,12 @@ const ProductView = (props) => {
 
   // Effect hook to add listener for esc feature
   useEffect(() => {
+    props.fetchCart()
     document.addEventListener("keydown", escFunction, false);
     return () => {
       document.removeEventListener("keydown", escFunction, false);
     }
-  })
+  }, [])
 
   // Reads the quantity figure from the dropdown input
   const quantityChangeReader = (e) => {
@@ -46,20 +48,31 @@ const ProductView = (props) => {
   // 'Add to cart' button. Changes the message on the button as confirmation
   // and sends the variable 'cartitem' to the POST action.
   const addToCartHandler = () => {
-    if (quantity > 0) {
-      const cartitem = {
-        user_id: 1,
-        product_id: props.products[props.match.params.productId].id,
-        quantity: quantity,
-        name: props.products[props.match.params.productId].name,
-        price: props.products[props.match.params.productId].price,
-        photo: props.products[props.match.params.productId].photos[1].url,
-      }
-      props.postCartitem(cartitem)
-      setButtonMessage("Added to cart")
+    if (quantity === 0) {
+      //alert("Please select a quantity")
+      console.log(props.cart)
     }
-    else {
-      alert("Please select a quantity")
+    else if (quantity > 0) {
+      if(props.cart.some(item => item.name === props.products[props.match.params.productId].name) ) {
+        console.log("already there")
+        let itemToUpdate = props.cart.find(obj => {
+          return obj.name === props.products[props.match.params.productId].name
+        })
+        itemToUpdate.quantity += Number(quantity)
+        props.updateCartitem(itemToUpdate)
+      }
+      else {
+        const cartitem = {
+          user_id: 1,
+          product_id: props.products[props.match.params.productId].id,
+          quantity: quantity,
+          name: props.products[props.match.params.productId].name,
+          price: props.products[props.match.params.productId].price,
+          photo: props.products[props.match.params.productId].photos[1].url,
+        }
+        props.postCartitem(cartitem)
+        setButtonMessage("Added to cart")
+      }
     }
   }
 
@@ -69,7 +82,7 @@ const ProductView = (props) => {
       return(
         <div className="container" style={{ backgroundColor: 'white' }}>
           <div style={{ textAlign: 'right' }}>
-            <i className="far fa-times-circle" onClick={() => backClickHandler()}></i>
+            <i className="far fa-times-circle close-icon" onClick={() => backClickHandler()}></i>
           </div>
           <div className="row">
             <div className="col-md-8">
@@ -133,10 +146,14 @@ const ProductView = (props) => {
 ProductView.propTypes = {
   postCartitem: PropTypes.func.isRequired,
   products: PropTypes.array.isRequired,
+  updateCartitem: PropTypes.func.isRequired,
+  fetchCart: PropTypes.func.isRequired
 }
 
 const mapStateToProps = state => ({
   products: state.products.items,
+  cart: state.cart.userCart
+
 })
 
-export default connect(mapStateToProps, { postCartitem })(ProductView)
+export default connect(mapStateToProps, { postCartitem, updateCartitem, fetchCart })(ProductView)

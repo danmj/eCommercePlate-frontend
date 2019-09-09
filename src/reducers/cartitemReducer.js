@@ -1,4 +1,4 @@
-import { FETCH_CART, DELETE_CARTITEM, GET_TOTAL } from '../actions/types';
+import { FETCH_CART, DELETE_CARTITEM, GET_TOTAL, UPDATE_CARTITEM } from '../actions/types';
 
 const initialState = {
   userCart: [],
@@ -7,7 +7,6 @@ const initialState = {
 
 export default function(state = initialState, action) {
   switch(action.type) {
-
     // Adds fetched cartitems to the 'userCart' state
     case FETCH_CART:
       return {
@@ -40,6 +39,15 @@ export default function(state = initialState, action) {
         userCart: array,
         total: newTotal
       };
+
+    // Updates quantity of item if it is already in cart and user changes quantity
+    // If they update from the ProductView, it will add to cart quantity.
+    // If they update from Cart it will replace entirely.
+    // case UPDATE_CARTITEM:
+    //   return {
+    //     ...state,
+    //     userCart: action.payload,
+    //   };
 
     default:
       return state
