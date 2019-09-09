@@ -7,22 +7,16 @@ import { GET_TOTAL } from './types';
 export const fetchCart = () => dispatch => {
   fetch('http://localhost:3000/api/v1/cartitems/')
     .then(res => res.json())
-    .then(cartjson =>
+    .then(cartjson => {
       dispatch({
         type: FETCH_CART,
         payload: cartjson
-    }))
-}
-
-// Action to receive the total number of items from the cart
-export const getTotal = () => dispatch => {
-  fetch('http://localhost:3000/api/v1/cartitems/')
-    .then(res => res.json())
-    .then(cartjson =>
+      });
       dispatch({
         type: GET_TOTAL,
         payload: cartjson
-    }))
+      });
+    });
 }
 
 // Action to POST items to the cartitems table when it is added to the cart

@@ -1,22 +1,22 @@
 // ProductCard is the individual clickable product displayed within a list.
 // Clicking on a ProductCard will take you to that product's view page.
-import React, { Component } from 'react'
+import React from 'react';
 import { Link } from 'react-router-dom';
 
-class ProductCard extends Component {
+const ProductCard = (props) => {
 
-  render() {
-    return(
-        <div className='product-card' style={{ border: 'transparent' }}>
-          <Link key={this.props.product.id} to={`/product/${this.props.product.id - 1}`}>
-            <div className="card-body">
-              <img alt='product card thumb' src={this.props.product.photos[1].url} style={{ height: '300px', width: '300px' }}/>
-              <h6 className="product-card-text" style={{ textAlign: 'left' }}><b>{this.props.product.name}</b>  ${parseFloat(this.props.product.price).toFixed(2)}</h6>
-            </div>
-          </Link>
-        </div>
-    )
-  }
+  return(
+      <div className='product-card' style={{ border: 'transparent' }}>
+        <Link key={props.product.id} to={`/product/${props.product.id - 1}`}>
+          <div className="card-body">
+            <img alt='product card thumb' src={props.product.photos[1].url} style={{ height: '300px', width: '300px' }}/>
+            <h6 className="product-card-text" style={{ textAlign: 'left' }}><b>{props.product.name}</b>  ${parseFloat(props.product.price).toFixed(2)}</h6>
+          </div>
+        </Link>
+      </div>
+  )
 }
+
+
 
 export default ProductCard
