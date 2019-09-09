@@ -177,3 +177,14 @@ a:hover {
   flex-flow: row wrap;
   background-color: #eeeeee;
 }
+
+.close-icon {
+  padding-top: 1%;
+  font-size: 1.5em;
+}
+.close-icon:hover {
+  padding-top: 1%;
+  font-size: 1.5em;
+  cursor: pointer;
+  color: grey;
+}
