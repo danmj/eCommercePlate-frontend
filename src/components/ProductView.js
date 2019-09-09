@@ -49,8 +49,7 @@ const ProductView = (props) => {
   // and sends the variable 'cartitem' to the POST action.
   const addToCartHandler = () => {
     if (quantity === 0) {
-      //alert("Please select a quantity")
-      console.log(props.cart)
+      alert("Please select a quantity")
     }
     else if (quantity > 0) {
       if(props.cart.some(item => item.name === props.products[props.match.params.productId].name) ) {
