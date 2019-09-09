@@ -14,7 +14,7 @@ To access to the full features of this site, please complete the following three
 
 ## Demo gif
 
-![demo gif](https://media.giphy.com/media/XfW2jjx4XUOeO02awk/giphy.gif)
+![demo gif](https://media.giphy.com/media/m9om4xAbSZ7Iq73Gzb/giphy.gif)
 
 ## Tech/Framework
 
