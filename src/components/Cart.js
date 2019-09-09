@@ -5,7 +5,7 @@ import React, { Component } from 'react';
 import CartItem from './CartItem.js';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { fetchCart, deleteCartitem } from '../actions/cartitemAction.js';
+import { fetchCart, deleteCartitem, updateCartitem } from '../actions/cartitemAction.js';
 
 class Cart extends Component {
 
@@ -15,18 +15,12 @@ class Cart extends Component {
     this.props.fetchCart()
   }
 
-  // Handles the removal of an item from the cart by passing it to the DELETE
-  // method in the cartItemAction
-  removeItem = (obj) => {
-    this.props.deleteCartitem(obj)
-  }
-
   // Creates each (CartItem) row in the cart table
   // If the cart is empty it will display the empty message.
   createCartItem = () => {
     if(this.props.cart.length > 0) {
       return this.props.cart.map((cartObj) =>
-        <CartItem key={cartObj.id} cartObj={cartObj} removeItem={this.removeItem} />
+        <CartItem key={cartObj.id} cartObj={cartObj} />
       )
     }
     else {
@@ -139,8 +133,8 @@ class Cart extends Component {
 
 Cart.propTypes = {
   fetchCart: PropTypes.func.isRequired,
-  getTotal: PropTypes.func.isRequired,
   deleteCartitem: PropTypes.func.isRequired,
+  updateCartitem: PropTypes.func.isRequired,
   cart: PropTypes.array.isRequired,
   sum: PropTypes.number.isRequired
 }
@@ -150,4 +144,4 @@ const mapStateToProps = state => ({
   sum: state.cart.total,
 })
 
-export default connect(mapStateToProps, {fetchCart, deleteCartitem})(Cart)
+export default connect(mapStateToProps, { fetchCart, deleteCartitem, updateCartitem })(Cart)

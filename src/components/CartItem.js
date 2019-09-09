@@ -1,12 +1,32 @@
 // CartItem is each individual row in the shopping cart.
 // Each row corresponds to a product, holding it's image, name, price and quantity.
-import React from 'react';
+import React, { useState } from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { deleteCartitem, updateCartitem } from '../actions/cartitemAction.js';
 
 const CartItem = (props) => {
 
+  const [inputQuantity, setInputQuantity] = useState(props.cartObj.quantity);
+
   // Reads the clicking of the 'delete' icon.
-  const removeItem = (obj) => {
-    props.removeItem(props.cartObj)
+  const removeItem = () => {
+    props.deleteCartitem(props.cartObj)
+  }
+
+  const quantityInputHandler = (e) => {
+    setInputQuantity(e.target.value)
+  }
+
+  const updateQuantity = () => {
+    if (Number(inputQuantity) === 0) {
+      props.deleteCartitem(props.cartObj)
+    }
+    else if (Number(inputQuantity) > 0){
+      const updatingItem = props.cartObj
+      updatingItem.quantity = inputQuantity
+      props.updateCartitem(updatingItem)
+    }
   }
 
   return(
@@ -15,15 +35,27 @@ const CartItem = (props) => {
         <div className="p-2">
           <img src={props.cartObj.photo} alt="cart" width="70" className="img-fluid rounded shadow-sm" />
           <div className="ml-3 d-inline-block align-middle">
-            <h5 className="mb-0"> <a href={`/product/${props.cartObj.product_id - 1}`} className="text-dark d-inline-block align-middle">{props.cartObj.name}</a></h5><span className="text-muted font-weight-normal font-italic d-block">{props.cartObj.type_id}</span>
+            <h5 className="mb-0"><a href={`/product/${props.cartObj.product_id - 1}`} className="text-dark d-inline-block align-middle">{props.cartObj.name}</a></h5><span className="text-muted font-weight-normal font-italic d-block">{props.cartObj.type_id}</span>
           </div>
         </div>
       </th>
-      <td className="border-0 align-middle"><strong>{(props.cartObj.price).toFixed(2)}</strong></td>
-      <td className="border-0 align-middle"><strong>{props.cartObj.quantity}</strong></td>
-      <td className="border-0 align-middle"><a href="#!" className="text-dark"><i className="far fa-trash-alt" onClick={() => removeItem()}></i></a></td>
+      <td className="border-0 align-middle">
+        <strong>{(props.cartObj.price).toFixed(2)}</strong>
+      </td>
+      <td className="border-0 align-middle">
+        <input style={{ width: "30px" }} defaultValue={inputQuantity} onChange={(e) => quantityInputHandler(e)} />
+        <button onClick={() => updateQuantity()}>Update</button>
+      </td>
+      <td className="border-0 align-middle">
+        <i className="far fa-trash-alt delete-icon" onClick={() => removeItem()}></i>
+      </td>
     </tr>
   )
 }
 
-export default CartItem
+CartItem.propTypes = {
+  deleteCartitem: PropTypes.func.isRequired,
+  updateCartitem: PropTypes.func.isRequired
+}
+
+export default connect(null, { deleteCartitem, updateCartitem })(CartItem)

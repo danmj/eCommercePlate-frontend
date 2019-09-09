@@ -33,7 +33,7 @@ export default function(state = initialState, action) {
       const array = state.userCart.filter(item => item !== action.payload)
       const originalTotal = state.total
       let newTotal = originalTotal - (action.payload.price * action.payload.quantity)
-
+      
       return {
         ...state,
         userCart: array,
@@ -43,11 +43,23 @@ export default function(state = initialState, action) {
     // Updates quantity of item if it is already in cart and user changes quantity
     // If they update from the ProductView, it will add to cart quantity.
     // If they update from Cart it will replace entirely.
-    // case UPDATE_CARTITEM:
-    //   return {
-    //     ...state,
-    //     userCart: action.payload,
-    //   };
+    case UPDATE_CARTITEM:
+      const cartArray = state.userCart
+      let index = state.userCart.indexOf(action.payload);
+      cartArray[index] = action.payload
+
+      const cartPrices = cartArray.map((cartObj) =>
+        (cartObj.price * cartObj.quantity))
+      let updatedTotal = 0
+      for(var j = 0; j < cartPrices.length; j++) {
+        updatedTotal += cartPrices[j]
+      }
+
+      return {
+        ...state,
+        userCart: cartArray,
+        total: updatedTotal
+      };
 
     default:
       return state

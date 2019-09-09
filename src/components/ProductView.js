@@ -54,7 +54,6 @@ const ProductView = (props) => {
     }
     else if (quantity > 0) {
       if(props.cart.some(item => item.name === props.products[props.match.params.productId].name) ) {
-        console.log("already there")
         let itemToUpdate = props.cart.find(obj => {
           return obj.name === props.products[props.match.params.productId].name
         })
