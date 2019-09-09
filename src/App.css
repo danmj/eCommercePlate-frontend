@@ -188,3 +188,8 @@ a:hover {
   cursor: pointer;
   color: grey;
 }
+
+.delete-icon:hover {
+  cursor: pointer;
+  color: grey;
+}
