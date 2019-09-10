@@ -17,13 +17,14 @@ const ProductView = (props) => {
 
   // Handles the 'close' button by returning user to previous page
   const backClickHandler = () => {
+    props.fetchCart()
     window.history.back()
   }
 
   // Allows esc key to have the same effect as the 'close' button
   const escFunction = (event) => {
     if(event.keyCode === 27) {
-      window.history.back()
+      backClickHandler()
     }
     else {
       return null
@@ -93,24 +94,21 @@ const ProductView = (props) => {
           </div>
           <div className="row">
             <div className="col-md-8">
-
-            <ReactImageMagnify  {...{
-            smallImage: {
-                alt: 'smaller',
-                isFluidWidth: false,
-                width: 360,
-                height: 500,
-                src: props.products[props.match.params.productId].photos[1].url,
-            },
-            largeImage: {
-                src: props.products[props.match.params.productId].photos[1].url,
-                width: 1200,
-                height: 1800,
-            }
-          }} enlargedImagePosition='over' isHintEnabled={true} />
-
+              <ReactImageMagnify  {...{
+              smallImage: {
+                  alt: 'smaller',
+                  isFluidWidth: false,
+                  width: 360,
+                  height: 500,
+                  src: props.products[props.match.params.productId].photos[1].url,
+              },
+              largeImage: {
+                  src: props.products[props.match.params.productId].photos[1].url,
+                  width: 1200,
+                  height: 1800,
+              }
+              }} enlargedImagePosition='over' isHintEnabled={true} />
             </div>
-
             <div className="col-md-4">
               <h1 className="my-4">{props.products[props.match.params.productId].name}</h1>
               <h3>${parseFloat(props.products[props.match.params.productId].price).toFixed(2)}</h3>
@@ -118,7 +116,6 @@ const ProductView = (props) => {
               <p>{props.products[props.match.params.productId].description}</p>
               <p>{props.products[props.match.params.productId].comment}</p>
               <p>{props.products[props.match.params.productId].subtitle}</p>
-
 
               <select className="custom-select" style={{ maxWidth: '260px' }} value={props.quantityValue} onChange={quantityChangeReader}>
                   <option value="0">Select Quantity</option>
@@ -128,10 +125,8 @@ const ProductView = (props) => {
                   <option value="4">4</option>
                   <option value="5">5</option>
                 </select>
-
                 <div style={{ padding: '4px' }}>
                 </div>
-
                 <button className="btn btn-secondary" style={{ maxWidth: '260px' }} onClick={addToCartHandler}>{buttonMessage}</button>
             </div>
           </div>
