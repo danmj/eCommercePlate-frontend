@@ -9,6 +9,8 @@ const CartItem = (props) => {
 
   const [inputQuantity, setInputQuantity] = useState(props.cartObj.quantity);
 
+  const [cartQuantity, setCartQuantity] = useState(props.cartObj.quantity);
+
   // Reads the clicking of the 'delete' icon.
   const removeItem = () => {
     props.deleteCartitem(props.cartObj)
@@ -26,6 +28,7 @@ const CartItem = (props) => {
       const updatingItem = props.cartObj
       updatingItem.quantity = inputQuantity
       props.updateCartitem(updatingItem)
+      setCartQuantity(inputQuantity)
     }
   }
 
@@ -40,14 +43,14 @@ const CartItem = (props) => {
         </div>
       </th>
       <td className="border-0 align-middle">
-        <strong>{(props.cartObj.price).toFixed(2)}</strong>
+        <strong>{Number(props.cartObj.price * cartQuantity).toFixed(2)}</strong>
       </td>
       <td className="border-0 align-middle">
-        <input style={{ width: "30px" }} defaultValue={inputQuantity} onChange={(e) => quantityInputHandler(e)} />
-        <button onClick={() => updateQuantity()}>Update</button>
+        <input style={{ width: "30px" }} defaultValue={inputQuantity} onChange={quantityInputHandler} />
+        <button onClick={updateQuantity}>Update</button>
       </td>
       <td className="border-0 align-middle">
-        <i className="far fa-trash-alt delete-icon" onClick={() => removeItem()}></i>
+        <i className="far fa-trash-alt delete-icon" onClick={removeItem}></i>
       </td>
     </tr>
   )

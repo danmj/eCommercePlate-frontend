@@ -27,7 +27,7 @@ class Cart extends Component {
       return (
         <tr>
           <th>
-            <h5 style={{ padding: '38px' }}>You have no items in your shopping cart</h5>
+            <h5 style={{ padding: '38px' }}>Your cart is empty.</h5>
           </th>
         </tr>
       )
@@ -49,7 +49,7 @@ class Cart extends Component {
                           <div className="p-2 px-3 text-uppercase">Product</div>
                         </th>
                         <th scope="col" className="border-0 bg-light">
-                          <div className="py-2 text-uppercase">Price</div>
+                          <div className="py-2 text-uppercase">Item Total</div>
                         </th>
                         <th scope="col" className="border-0 bg-light">
                           <div className="py-2 text-uppercase">Quantity</div>

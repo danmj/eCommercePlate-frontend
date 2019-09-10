@@ -3,6 +3,7 @@
 import React, { Component } from 'react';
 import ProductCard from '../components/ProductCard.js';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 
 class AllProductsList extends Component {
 
@@ -22,8 +23,12 @@ class AllProductsList extends Component {
   }
 }
 
+AllProductsList.propTypes = {
+  Products: PropTypes.array.isRequired,
+}
+
 const mapStateToProps = state => ({
   products: state.products.items,
 })
 
-export default connect(mapStateToProps, {})(AllProductsList)
+export default connect(mapStateToProps, { })(AllProductsList)

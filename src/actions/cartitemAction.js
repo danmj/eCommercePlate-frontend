@@ -30,7 +30,8 @@ export const postCartitem = cartitem => dispatch => {
       dispatch({
         type: POST_CARTITEM,
         payload: cartitem
-    })})
+      })
+    })
 }
 
 // Action to DELETE items from the cartitems table when delete button is pressed
@@ -43,7 +44,8 @@ export const deleteCartitem = itemToDelete => dispatch => {
       dispatch({
         type: DELETE_CARTITEM,
         payload: itemToDelete
-    }) )
+      })
+    )
 }
 
 // Action to update the caritem's quantity
@@ -63,5 +65,6 @@ export const updateCartitem = itemToUpdate => dispatch => {
       dispatch({
         type: UPDATE_CARTITEM,
         payload: itemToUpdate
-    })})
+      })
+    })
 }

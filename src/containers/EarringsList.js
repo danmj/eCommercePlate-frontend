@@ -34,4 +34,4 @@ const mapStateToProps = state => ({
   products: state.products.items,
 })
 
-export default connect(mapStateToProps, {})(EarringsList)
+export default connect(mapStateToProps, { })(EarringsList)

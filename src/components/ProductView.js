@@ -53,11 +53,12 @@ const ProductView = (props) => {
     }
     else if (quantity > 0) {
       if(props.cart.some(item => item.name === props.products[props.match.params.productId].name) ) {
-        let itemToUpdate = props.cart.find(obj => {
+        const itemToUpdate = props.cart.find(obj => {
           return obj.name === props.products[props.match.params.productId].name
         })
         itemToUpdate.quantity += Number(quantity)
         props.updateCartitem(itemToUpdate)
+        setButtonMessage("Added to cart")
       }
       else {
         const cartitem = {
@@ -80,7 +81,7 @@ const ProductView = (props) => {
       return(
         <div className="container" style={{ backgroundColor: 'white' }}>
           <div style={{ textAlign: 'right' }}>
-            <i className="far fa-times-circle close-icon" onClick={() => backClickHandler()}></i>
+            <i className="far fa-times-circle close-icon" onClick={backClickHandler}></i>
           </div>
           <div className="row">
             <div className="col-md-8">
@@ -111,7 +112,7 @@ const ProductView = (props) => {
               <p>{props.products[props.match.params.productId].subtitle}</p>
 
 
-              <select className="custom-select" style={{ maxWidth: '260px' }} value={props.quantityValue} onChange={(e) => quantityChangeReader(e)}>
+              <select className="custom-select" style={{ maxWidth: '260px' }} value={props.quantityValue} onChange={quantityChangeReader}>
                   <option value="0">Select Quantity</option>
                   <option value="1">1</option>
                   <option value="2">2</option>
@@ -123,7 +124,7 @@ const ProductView = (props) => {
                 <div style={{ padding: '4px' }}>
                 </div>
 
-                <button className="btn btn-secondary" style={{ maxWidth: '260px' }} onClick={() => addToCartHandler()}>{buttonMessage}</button>
+                <button className="btn btn-secondary" style={{ maxWidth: '260px' }} onClick={addToCartHandler}>{buttonMessage}</button>
             </div>
           </div>
         </div>
@@ -151,7 +152,6 @@ ProductView.propTypes = {
 const mapStateToProps = state => ({
   products: state.products.items,
   cart: state.cart.userCart
-
 })
 
 export default connect(mapStateToProps, { postCartitem, updateCartitem, fetchCart })(ProductView)

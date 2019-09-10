@@ -19,7 +19,7 @@ export default function(state = initialState, action) {
       const prices = action.payload.map((cartObj) =>
         (cartObj.price * cartObj.quantity))
       let summedTotal = 0
-      for(var i = 0; i < prices.length; i++) {
+      for(let i = 0; i < prices.length; i++) {
         summedTotal += prices[i]
       }
       return {
@@ -32,8 +32,8 @@ export default function(state = initialState, action) {
     case DELETE_CARTITEM:
       const array = state.userCart.filter(item => item !== action.payload)
       const originalTotal = state.total
-      let newTotal = originalTotal - (action.payload.price * action.payload.quantity)
-      
+      const newTotal = originalTotal - (action.payload.price * action.payload.quantity)
+
       return {
         ...state,
         userCart: array,
@@ -45,13 +45,13 @@ export default function(state = initialState, action) {
     // If they update from Cart it will replace entirely.
     case UPDATE_CARTITEM:
       const cartArray = state.userCart
-      let index = state.userCart.indexOf(action.payload);
+      const index = state.userCart.indexOf(action.payload);
       cartArray[index] = action.payload
 
       const cartPrices = cartArray.map((cartObj) =>
         (cartObj.price * cartObj.quantity))
       let updatedTotal = 0
-      for(var j = 0; j < cartPrices.length; j++) {
+      for(let j = 0; j < cartPrices.length; j++) {
         updatedTotal += cartPrices[j]
       }
 

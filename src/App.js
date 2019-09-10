@@ -24,7 +24,7 @@ class App extends Component {
 
   // Fetching product data from backend so all routed components have access
   componentDidMount() {
-    this.props.fetchProducts()
+    this.props.fetchProducts();
   }
 
   render() {
