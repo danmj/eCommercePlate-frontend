@@ -7,8 +7,10 @@ import { deleteCartitem, updateCartitem } from '../actions/cartitemAction.js';
 
 const CartItem = (props) => {
 
+  // Quantity figure for internal use in changing updatingItem
   const [inputQuantity, setInputQuantity] = useState(props.cartObj.quantity);
 
+  // Quantity figure for visual use to display on cartitem line
   const [cartQuantity, setCartQuantity] = useState(props.cartObj.quantity);
 
   // Reads the clicking of the 'delete' icon.

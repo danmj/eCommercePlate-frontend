@@ -42,16 +42,22 @@ const ProductView = (props) => {
   // Reads the quantity figure from the dropdown input
   const quantityChangeReader = (e) => {
     setQuantity(e.target.value)
+    props.fetchCart()
+    setButtonMessage("Add to cart")
   }
 
   // Stores the item data as a variable 'cartitem' when user presses the
   // 'Add to cart' button. Changes the message on the button as confirmation
   // and sends the variable 'cartitem' to the POST action.
   const addToCartHandler = () => {
+    // If no quantity is selected, do not add item, alert the user instead
     if (quantity === 0) {
       alert("Please select a quantity")
     }
+
+    // If a quantity greater than 0 is selected, begin logic to add item
     else if (quantity > 0) {
+      // If the item already exists in the cart, then simply add to its existing quantity
       if(props.cart.some(item => item.name === props.products[props.match.params.productId].name) ) {
         const itemToUpdate = props.cart.find(obj => {
           return obj.name === props.products[props.match.params.productId].name
@@ -60,6 +66,8 @@ const ProductView = (props) => {
         props.updateCartitem(itemToUpdate)
         setButtonMessage("Added to cart")
       }
+
+      // If the item does not already exist in the cart, then create a new cartitem
       else {
         const cartitem = {
           user_id: 1,
