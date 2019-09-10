@@ -24,7 +24,7 @@ class AllProductsList extends Component {
 }
 
 AllProductsList.propTypes = {
-  Products: PropTypes.array.isRequired,
+  products: PropTypes.array.isRequired,
 }
 
 const mapStateToProps = state => ({

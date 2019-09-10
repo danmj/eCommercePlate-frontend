@@ -27,7 +27,7 @@ class EarringsList extends Component {
 }
 
 EarringsList.propTypes = {
-  Products: PropTypes.array.isRequired,
+  products: PropTypes.array.isRequired,
 }
 
 const mapStateToProps = state => ({
