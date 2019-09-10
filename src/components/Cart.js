@@ -5,7 +5,7 @@ import React, { useEffect } from 'react';
 import CartItem from './CartItem.js';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { fetchCart, deleteCartitem, updateCartitem } from '../actions/cartitemAction.js';
+import { fetchCart } from '../actions/cartitemAction.js';
 
 const Cart = (props) => {
 
@@ -130,8 +130,6 @@ const Cart = (props) => {
 
 Cart.propTypes = {
   fetchCart: PropTypes.func.isRequired,
-  deleteCartitem: PropTypes.func.isRequired,
-  updateCartitem: PropTypes.func.isRequired,
   cart: PropTypes.array.isRequired,
   sum: PropTypes.number.isRequired
 }
@@ -141,4 +139,4 @@ const mapStateToProps = state => ({
   sum: state.cart.total,
 })
 
-export default connect(mapStateToProps, { fetchCart, deleteCartitem, updateCartitem })(Cart)
+export default connect(mapStateToProps, { fetchCart })(Cart)
