@@ -24,7 +24,7 @@ const CartItem = (props) => {
     if (Number(inputQuantity) === 0) {
       props.deleteCartitem(props.cartObj)
     }
-    else if (Number(inputQuantity) > 0){
+    else if (Number(inputQuantity) > 0) {
       const updatingItem = props.cartObj
       updatingItem.quantity = inputQuantity
       props.updateCartitem(updatingItem)
