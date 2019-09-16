@@ -16,12 +16,16 @@ export default function(state = initialState, action) {
 
     // Calculates the total price of the shopping cart, stores as the 'total' state
     case GET_TOTAL:
-      const prices = action.payload.map((cartObj) =>
-        (cartObj.price * cartObj.quantity))
+      // const prices = action.payload.map((cartObj) =>
+      //   (cartObj.price * cartObj.quantity))
       let summedTotal = 0
-      for(let i = 0; i < prices.length; i++) {
-        summedTotal += prices[i]
-      }
+      // for(let i = 0; i < prices.length; i++) {
+      //   summedTotal += prices[i]
+      // }
+      action.payload.forEach(cartObj => {
+        summedTotal += cartObj.price * cartObj.quantity
+      })
+
       return {
         ...state,
         total: summedTotal
@@ -48,12 +52,10 @@ export default function(state = initialState, action) {
       const index = state.userCart.indexOf(action.payload);
       cartArray[index] = action.payload
 
-      const cartPrices = cartArray.map((cartObj) =>
-        (cartObj.price * cartObj.quantity))
       let updatedTotal = 0
-      for(let j = 0; j < cartPrices.length; j++) {
-        updatedTotal += cartPrices[j]
-      }
+      cartArray.forEach(cartObj => {
+        updatedTotal += cartObj.price * cartObj.quantity
+      })
 
       return {
         ...state,
