@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { loginUser, fetchUsers, createUser } from '../actions/userAction.js';
+import { fetchUsers, loginUser, createUser } from '../actions/userAction.js';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
@@ -24,10 +24,10 @@ class Signup extends Component {
       username: this.state.username,
       email: this.state.email,
     }
-    const loginUser = this.props.usersArray.find(user => {
+    const signupName = this.props.usersArray.find(user => {
       return user.username === this.state.username
     })
-    if (!loginUser) {
+    if (!signupName) {
       this.props.createUser(user)
     }
     else {

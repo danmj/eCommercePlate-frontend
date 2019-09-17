@@ -8,7 +8,7 @@ import { connect } from 'react-redux';
 import { fetchCart } from '../actions/cartitemAction.js';
 
 const Cart = (props) => {
-
+  
   const userString = localStorage.getItem("user")
   const currentUser = JSON.parse(userString)
 

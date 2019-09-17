@@ -1,13 +1,12 @@
 import React, { Component } from 'react';
-import { loginUser, fetchUsers } from '../actions/userAction.js';
+import { fetchUsers, loginUser } from '../actions/userAction.js';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 class Login extends Component {
 
   state = {
-    username: "",
-    thisUser: []
+    username: ""
   }
 
   componentDidMount() {
