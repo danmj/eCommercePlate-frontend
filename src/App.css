@@ -193,3 +193,28 @@ a:hover {
   cursor: pointer;
   color: grey;
 }
+
+.login-outter {
+  background-color: #a6a6a6;
+  display: flex;
+  height: 80vh;
+}
+
+.login-inner {
+  background-color: white;
+  width: 50%;
+  height: 60%;
+  margin: 0 auto;
+  margin-top: 5%;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.new-user {
+  cursor: pointer;
+  color: rgb(21, 127, 251)
+}
+.new-user:hover {
+  cursor: pointer;
+  color: rgb(15, 80, 153)
+}

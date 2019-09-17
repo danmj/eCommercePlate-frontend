@@ -1,8 +1,8 @@
-import { FETCH_CART, DELETE_CARTITEM, GET_TOTAL, UPDATE_CARTITEM } from '../actions/types';
+import { FETCH_CART, GET_TOTAL, DELETE_CARTITEM, UPDATE_CARTITEM } from '../actions/types';
 
 const initialState = {
   userCart: [],
-  total: 0,
+  total: 0
 }
 
 export default function(state = initialState, action) {
@@ -16,15 +16,12 @@ export default function(state = initialState, action) {
 
     // Calculates the total price of the shopping cart, stores as the 'total' state
     case GET_TOTAL:
-      // const prices = action.payload.map((cartObj) =>
-      //   (cartObj.price * cartObj.quantity))
       let summedTotal = 0
-      // for(let i = 0; i < prices.length; i++) {
-      //   summedTotal += prices[i]
-      // }
-      action.payload.forEach(cartObj => {
-        summedTotal += cartObj.price * cartObj.quantity
-      })
+      if(action.payload.length > 0) {
+        action.payload.forEach(cartObj => {
+          summedTotal += cartObj.price * cartObj.quantity
+        })
+      }
 
       return {
         ...state,

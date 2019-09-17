@@ -19,6 +19,8 @@ import Credits from './components/Credits.js';
 import ProductViewContainer from './containers/ProductViewContainer.js';
 import Cart from './components/Cart.js';
 import ScrollToTop from './components/ScrollToTop.js';
+import Login from './containers/Login.js';
+import Signup from './containers/Signup.js';
 
 class App extends Component {
 
@@ -39,6 +41,8 @@ class App extends Component {
           <Route exact path="/products/earrings" component={EarringsList} />
           <Route exact path="/products/all" component={AllProductsList} />
           <Route exact path="/events" component={Events} />
+          <Route exact path="/login" component={Login} />
+          <Route exact path="/signup" component={Signup} />
           <Route exact path="/cart" component={Cart} />
           <Route path='/product' render={routerProps => <ProductViewContainer {...routerProps} />} />
           <Credits />

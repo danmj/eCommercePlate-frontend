@@ -9,15 +9,15 @@ import { fetchCart } from '../actions/cartitemAction.js';
 
 const ProductView = (props) => {
 
-  // State hook for message on "add to cart" button
-  const [buttonMessage, setButtonMessage] = useState("Add to cart");
+  const userString = localStorage.getItem("user")
+  const currentUser = JSON.parse(userString)
 
-  // State hook for user-selected quantity
+  const [buttonMessage, setButtonMessage] = useState("Add to cart");
   const [quantity, setQuantity] = useState(0);
 
   // Handles the 'close' button by returning user to previous page
   const backClickHandler = () => {
-    props.fetchCart()
+    props.fetchCart(currentUser)
     window.history.back()
   }
 
@@ -33,7 +33,7 @@ const ProductView = (props) => {
 
   // Effect hook to add listener for esc feature
   useEffect(() => {
-    props.fetchCart()
+    props.fetchCart(currentUser)
     document.addEventListener("keydown", escFunction, false);
     return () => {
       document.removeEventListener("keydown", escFunction, false);
@@ -43,7 +43,7 @@ const ProductView = (props) => {
   // Reads the quantity figure from the dropdown input
   const quantityChangeReader = (e) => {
     setQuantity(e.target.value)
-    props.fetchCart()
+    props.fetchCart(currentUser)
     setButtonMessage("Add to cart")
   }
 
@@ -55,19 +55,20 @@ const ProductView = (props) => {
     if (quantity === 0) {
       alert("Please select a quantity")
     }
-
+    else if (currentUser === "none") {
+      window.location.href = '/login';
+    }
     // If a quantity greater than 0 is selected, begin logic to add item
     else if (quantity > 0) {
       // If the item already exists in the cart, then simply add to its existing quantity
-      if(props.cart.some(item => item.name === props.products[props.match.params.productId].name) ) {
+      if (props.cart.some(item => item.name === props.products[props.match.params.productId].name)) {
         const itemToUpdate = props.cart.find(obj => {
           return obj.name === props.products[props.match.params.productId].name
         })
         itemToUpdate.quantity += Number(quantity)
-        props.updateCartitem(itemToUpdate)
+        props.updateCartitem(itemToUpdate, currentUser)
         setButtonMessage("Added to cart")
       }
-
       // If the item does not already exist in the cart, then create a new cartitem
       else {
         const cartitem = {
@@ -78,7 +79,7 @@ const ProductView = (props) => {
           price: props.products[props.match.params.productId].price,
           photo: props.products[props.match.params.productId].photos[1].url,
         }
-        props.postCartitem(cartitem)
+        props.postCartitem(cartitem, currentUser)
         setButtonMessage("Added to cart")
       }
     }

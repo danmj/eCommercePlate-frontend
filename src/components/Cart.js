@@ -9,9 +9,12 @@ import { fetchCart } from '../actions/cartitemAction.js';
 
 const Cart = (props) => {
 
+  const userString = localStorage.getItem("user")
+  const currentUser = JSON.parse(userString)
+
   // Receives the cart items data
   useEffect(() => {
-    props.fetchCart()
+    props.fetchCart(currentUser)
   }, [])
 
   // Creates each (CartItem) row in the cart table

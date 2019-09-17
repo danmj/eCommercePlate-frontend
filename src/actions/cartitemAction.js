@@ -1,14 +1,14 @@
-import { FETCH_CART, POST_CARTITEM, DELETE_CARTITEM, GET_TOTAL, UPDATE_CARTITEM } from './types';
+import { FETCH_CART, GET_TOTAL, POST_CARTITEM, DELETE_CARTITEM, UPDATE_CARTITEM } from './types';
 
-// Action to FETCH items from the cartitems table in the database
-export const fetchCart = () => dispatch => {
-  fetch('http://localhost:3000/api/v1/cartitems/')
+// Action to FETCH items from the user's cartitems
+export const fetchCart = (user) => dispatch => {
+  fetch(`http://localhost:3000/api/v1/users/${user.id}/cartitems/`)
     .then(res => res.json())
     .then(cartjson => {
       dispatch({
         type: FETCH_CART,
         payload: cartjson
-      });
+      })
       dispatch({
         type: GET_TOTAL,
         payload: cartjson
@@ -16,9 +16,9 @@ export const fetchCart = () => dispatch => {
     });
 }
 
-// Action to POST items to the cartitems table when it is added to the cart
-export const postCartitem = cartitem => dispatch => {
-  fetch('http://localhost:3000/api/v1/cartitems', {
+// Action to POST items to the user's cartitems
+export const postCartitem = (cartitem, user) => dispatch => {
+  fetch(`http://localhost:3000/api/v1/users/${user.id}/cartitems`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -34,9 +34,9 @@ export const postCartitem = cartitem => dispatch => {
     })
 }
 
-// Action to DELETE items from the cartitems table when delete button is pressed
-export const deleteCartitem = itemToDelete => dispatch => {
-  fetch(`http://localhost:3000/api/v1/cartitems/${itemToDelete.id}`, {
+// Action to DELETE items from the user's cartitems
+export const deleteCartitem = (itemToDelete, user) => dispatch => {
+  fetch(`http://localhost:3000/api/v1/users/${user.id}/cartitems/${itemToDelete.id}`, {
     method: 'delete'
   })
     .then(response => response.json())
@@ -49,8 +49,8 @@ export const deleteCartitem = itemToDelete => dispatch => {
 }
 
 // Action to update the caritem's quantity
-export const updateCartitem = itemToUpdate => dispatch => {
-  fetch(`http://localhost:3000/api/v1/cartitems/${itemToUpdate.id}`, {
+export const updateCartitem = (itemToUpdate, user) => dispatch => {
+  fetch(`http://localhost:3000/api/v1/users/${user.id}/cartitems/${itemToUpdate.id}`, {
       method: "PATCH",
       headers: {
         'Accept': 'application/json',

@@ -7,6 +7,9 @@ import { deleteCartitem, updateCartitem } from '../actions/cartitemAction.js';
 
 const CartItem = (props) => {
 
+  const userString = localStorage.getItem("user")
+  const currentUser = JSON.parse(userString)
+
   // Quantity figure for internal use in changing updatingItem
   const [inputQuantity, setInputQuantity] = useState(props.cartObj.quantity);
 
@@ -15,7 +18,7 @@ const CartItem = (props) => {
 
   // Reads the clicking of the 'delete' icon.
   const removeItem = () => {
-    props.deleteCartitem(props.cartObj)
+    props.deleteCartitem(props.cartObj, currentUser)
   }
 
   const quantityInputHandler = (e) => {
@@ -24,12 +27,12 @@ const CartItem = (props) => {
 
   const updateQuantity = () => {
     if (Number(inputQuantity) === 0) {
-      props.deleteCartitem(props.cartObj)
+      props.deleteCartitem(props.cartObj, currentUser)
     }
     else if (Number(inputQuantity) > 0) {
       const updatingItem = props.cartObj
       updatingItem.quantity = inputQuantity
-      props.updateCartitem(updatingItem)
+      props.updateCartitem(updatingItem, currentUser)
       setCartQuantity(inputQuantity)
     }
   }
