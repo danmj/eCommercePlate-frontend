@@ -1,6 +1,7 @@
 import { FETCH_CART, GET_TOTAL, POST_CARTITEM, DELETE_CARTITEM, UPDATE_CARTITEM } from './types';
 
 // Action to FETCH items from the user's cartitems
+// Multi (Cart, ProductView)
 export const fetchCart = (user) => dispatch => {
   fetch(`http://localhost:3000/api/v1/users/${user.id}/cartitems/`)
     .then(res => res.json())
@@ -17,6 +18,7 @@ export const fetchCart = (user) => dispatch => {
 }
 
 // Action to POST items to the user's cartitems
+// Single (ProductView)
 export const postCartitem = (cartitem, user) => dispatch => {
   fetch(`http://localhost:3000/api/v1/users/${user.id}/cartitems`, {
       method: "POST",
@@ -35,6 +37,7 @@ export const postCartitem = (cartitem, user) => dispatch => {
 }
 
 // Action to DELETE items from the user's cartitems
+// Single (Cartitem)
 export const deleteCartitem = (itemToDelete, user) => dispatch => {
   fetch(`http://localhost:3000/api/v1/users/${user.id}/cartitems/${itemToDelete.id}`, {
     method: 'delete'
@@ -49,6 +52,7 @@ export const deleteCartitem = (itemToDelete, user) => dispatch => {
 }
 
 // Action to update the caritem's quantity
+// Multi (ProductView, Cartitem)
 export const updateCartitem = (itemToUpdate, user) => dispatch => {
   fetch(`http://localhost:3000/api/v1/users/${user.id}/cartitems/${itemToUpdate.id}`, {
       method: "PATCH",
