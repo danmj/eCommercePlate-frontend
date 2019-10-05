@@ -21,13 +21,13 @@ const Carousel = () => {
       <div className="carousel-item">
         <img className="d-block w-100" src="https://i.imgur.com/QrMLsVT.png" alt="First slide" style={{ height: "710px", width: "auto"}} />
         <NavLink to='/events' exact>
-        <button className="btn">See Events & Offers</button>
+          <button className="btn">See Events & Offers</button>
         </NavLink>
       </div>
       <div className="carousel-item">
         <img className="d-block w-100" src="https://i.imgur.com/NWfLRaj.jpg" alt="Third slide" style={{ height: "710px", width: "auto"}} />
         <NavLink to='/products/all' exact>
-        <button className="btn">See Products</button>
+          <button className="btn">See Products</button>
         </NavLink>
       </div>
     </div>
