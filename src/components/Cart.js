@@ -8,7 +8,7 @@ import { connect } from 'react-redux';
 import { fetchCart } from '../actions/cartitemAction.js';
 
 const Cart = (props) => {
-  
+
   const userString = localStorage.getItem("user")
   const currentUser = JSON.parse(userString)
 
@@ -29,7 +29,7 @@ const Cart = (props) => {
       return (
         <tr>
           <th>
-            <h5 style={{ padding: '38px' }}>Your cart is empty.</h5>
+            <h5 className="empty-text">Your cart is empty.</h5>
           </th>
         </tr>
       )
@@ -41,7 +41,7 @@ const Cart = (props) => {
       <div className="pb-5">
         <div className="container">
           <div className="row">
-            <div className="col-lg-12 p-5 bg-white rounded shadow-sm mb-5" style={{ marginTop: '50px' }}>
+            <div className="col-lg-12 p-5 bg-white rounded shadow-sm mb-5 table-header-section">
               <div className="table-responsive">
                 <table className="table">
                   <thead>

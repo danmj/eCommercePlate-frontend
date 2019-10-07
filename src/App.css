@@ -232,3 +232,11 @@ a:hover {
   padding-left: 10px;
   padding-right: 10px;
 }
+
+.empty-text {
+  padding: 38px;
+}
+
+.table-header-section {
+  margin-top: 50px;
+}
