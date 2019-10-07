@@ -56,6 +56,15 @@
 .carousel-item .btn:hover {
   background-color: black;
 }
+
+.caro-main {
+  height: auto;
+}
+
+.caro-slide {
+  height: 710px;
+  width: auto;
+}
 /* CAROUSEL ends here */
 
 

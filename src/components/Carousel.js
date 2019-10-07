@@ -5,7 +5,7 @@ import { NavLink } from 'react-router-dom';
 
 const Carousel = () => {
   return(
-    <div id="carouselExampleIndicators" className="carousel slide" data-ride="carousel" style={{ height: "auto" }}>
+    <div id="carouselExampleIndicators" className="carousel slide caro-main" data-ride="carousel">
       <ol className="carousel-indicators">
       <li data-target="#carouselExampleIndicators" data-slide-to="0" className="active"></li>
       <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
@@ -13,19 +13,19 @@ const Carousel = () => {
     </ol>
     <div className="carousel-inner">
       <div className="carousel-item active">
-        <img className="d-block w-100" src="https://i.imgur.com/hlIT4OQ.jpg" alt="First slide" style={{ height: "710px", width: "auto"}} />
+        <img className="d-block w-100 caro-slide" src="https://i.imgur.com/hlIT4OQ.jpg" alt="First slide" />
         <NavLink to='/about' exact>
           <button className="btn">About Us</button>
         </NavLink>
       </div>
       <div className="carousel-item">
-        <img className="d-block w-100" src="https://i.imgur.com/QrMLsVT.png" alt="First slide" style={{ height: "710px", width: "auto"}} />
+        <img className="d-block w-100 caro-slide" src="https://i.imgur.com/QrMLsVT.png" alt="First slide" />
         <NavLink to='/events' exact>
           <button className="btn">See Events & Offers</button>
         </NavLink>
       </div>
       <div className="carousel-item">
-        <img className="d-block w-100" src="https://i.imgur.com/NWfLRaj.jpg" alt="Third slide" style={{ height: "710px", width: "auto"}} />
+        <img className="d-block w-100 caro-slide" src="https://i.imgur.com/NWfLRaj.jpg" alt="Third slide" />
         <NavLink to='/products/all' exact>
           <button className="btn">See Products</button>
         </NavLink>
