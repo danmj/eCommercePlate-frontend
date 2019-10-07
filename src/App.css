@@ -227,3 +227,8 @@ a:hover {
   cursor: pointer;
   color: rgb(15, 80, 153)
 }
+
+.nav-item-pad {
+  padding-left: 10px;
+  padding-right: 10px;
+}

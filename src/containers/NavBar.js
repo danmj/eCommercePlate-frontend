@@ -42,10 +42,10 @@ const NavBar = (props) => {
         </button>
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav mr-auto">
-            <li className="nav-item" style={{ paddingLeft: '10px', paddingRight: '10px' }}>
+            <li className="nav-item nav-item-pad">
               <a className="nav-link" href="/about">OUR STORY</a>
             </li>
-            <li className="nav-item dropdown" style={{ paddingLeft: '10px', paddingRight: '10px' }}>
+            <li className="nav-item dropdown nav-item-pad">
               <a className="nav-link dropdown-toggle" href="#!" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 PRODUCTS
               </a>
@@ -57,7 +57,7 @@ const NavBar = (props) => {
                 <a className="dropdown-item" href="/products/all">ALL PRODUCTS</a>
               </div>
             </li>
-            <li className="nav-item" style={{ paddingLeft: '10px', paddingRight: '10px' }}>
+            <li className="nav-item nav-item-pad">
               <a className="nav-link" href="/events">EVENTS</a>
             </li>
           </ul>
