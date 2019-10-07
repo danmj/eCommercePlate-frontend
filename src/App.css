@@ -240,3 +240,55 @@ a:hover {
 .table-header-section {
   margin-top: 50px;
 }
+
+.events-header {
+  background-color: #eeeeee;
+}
+
+.events-title {
+  color: black;
+}
+
+.our-story-div {
+  text-align: center;
+  padding-left: 25px;
+  padding-right: 25px;
+}
+
+.our-story-header {
+  padding: 40px;
+}
+
+.product-card-div {
+  border: transparent;
+}
+
+.product-card-image {
+  height: 300px;
+  width: 300px;
+}
+
+.produt-card-text {
+  text-align: left;
+}
+
+.rendered-view {
+  background-color: #eeeeee
+}
+
+.product-view-container {
+  background-color: white;
+}
+
+.close-icon-div {
+  text-align: right;
+}
+
+.select-quantity {
+  max-width: 260px;
+  padding-bottom: 4px;
+}
+
+.add-btn {
+  max-width: 260px;
+}

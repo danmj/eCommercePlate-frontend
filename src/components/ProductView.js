@@ -89,8 +89,8 @@ const ProductView = (props) => {
   const renderView = () => {
     if (props.products.length > 0) {
       return(
-        <div className="container" style={{ backgroundColor: 'white' }}>
-          <div style={{ textAlign: 'right' }}>
+        <div className="container product-view-container">
+          <div className="close-icon-div">
             <i className="far fa-times-circle close-icon" onClick={backClickHandler}></i>
           </div>
           <div className="row">
@@ -118,7 +118,7 @@ const ProductView = (props) => {
               <p>{props.products[props.match.params.productId].comment}</p>
               <p>{props.products[props.match.params.productId].subtitle}</p>
 
-              <select className="custom-select" style={{ maxWidth: '260px' }} value={props.quantityValue} onChange={quantityChangeReader}>
+              <select className="custom-select select-quantity" value={props.quantityValue} onChange={quantityChangeReader}>
                   <option value="0">Select Quantity</option>
                   <option value="1">1</option>
                   <option value="2">2</option>
@@ -126,9 +126,7 @@ const ProductView = (props) => {
                   <option value="4">4</option>
                   <option value="5">5</option>
                 </select>
-                <div style={{ padding: '4px' }}>
-                </div>
-                <button className="btn btn-secondary" style={{ maxWidth: '260px' }} onClick={addToCartHandler}>{buttonMessage}</button>
+                <button className="btn btn-secondary add-btn" onClick={addToCartHandler}>{buttonMessage}</button>
             </div>
           </div>
         </div>
@@ -140,7 +138,7 @@ const ProductView = (props) => {
   }
 
   return(
-    <div style={{ backgroundColor: '#eeeeee' }}>
+    <div className="rendered-view">
       {renderView()}
     </div>
   )

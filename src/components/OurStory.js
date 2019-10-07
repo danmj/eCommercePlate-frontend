@@ -5,8 +5,8 @@ const OurStory = () => {
 
   // You want to edit and replace the text here fit your own data.
   return(
-    <div style={{ textAlign: 'center', paddingLeft: '25px', paddingRight: '25px' }}>
-      <h2 style={{ padding: '40px' }}>Our Story</h2>
+    <div className="our-story-div">
+      <h2 className="our-story-header">Our Story</h2>
       <h6>The standard Lorem Ipsum passage, used since the 1500s</h6>
       <p>
         "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
