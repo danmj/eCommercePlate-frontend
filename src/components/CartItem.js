@@ -7,8 +7,8 @@ import { deleteCartitem, updateCartitem } from '../actions/cartitemAction.js';
 
 const CartItem = (props) => {
 
-  const userString = localStorage.getItem("user")
-  const currentUser = JSON.parse(userString)
+  // const userString = localStorage.getItem("user")
+  // const currentUser = JSON.parse(userString)
 
   // Quantity figure for internal use in changing updatingItem
   const [inputQuantity, setInputQuantity] = useState(props.cartObj.quantity);
@@ -18,7 +18,7 @@ const CartItem = (props) => {
 
   // Reads the clicking of the 'delete' icon.
   const removeItem = () => {
-    props.deleteCartitem(props.cartObj, currentUser)
+    props.deleteCartitem(props.cartObj, props.user)
   }
 
   const quantityInputHandler = (e) => {
@@ -27,12 +27,12 @@ const CartItem = (props) => {
 
   const updateQuantity = () => {
     if (Number(inputQuantity) === 0) {
-      props.deleteCartitem(props.cartObj, currentUser)
+      props.deleteCartitem(props.cartObj, props.user)
     }
     else if (Number(inputQuantity) > 0) {
       const updatingItem = props.cartObj
       updatingItem.quantity = inputQuantity
-      props.updateCartitem(updatingItem, currentUser)
+      props.updateCartitem(updatingItem, props.user)
       setCartQuantity(inputQuantity)
     }
   }
@@ -66,4 +66,8 @@ CartItem.propTypes = {
   updateCartitem: PropTypes.func.isRequired
 }
 
-export default connect(null, { deleteCartitem, updateCartitem })(CartItem)
+const mapStateToProps = state => ({
+  user: state.users.user
+})
+
+export default connect(mapStateToProps, { deleteCartitem, updateCartitem })(CartItem)

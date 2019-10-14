@@ -1,5 +1,6 @@
 // The credits footer at the bottom of the page.
 import React from 'react';
+import { NavLink, withRouter } from 'react-router-dom';
 
 const Credits = () => {
 
@@ -18,16 +19,24 @@ const Credits = () => {
             <h5 className="text-uppercase">Site Map</h5>
             <ul className="list-unstyled">
               <li>
-                <a href="/" className="credit-text">Home</a>
+                <NavLink to="/">
+                  <a href="!#" className="credit-text">Home</a>
+                </NavLink>
               </li>
               <li>
-                <a href="/about" className="credit-text">Our Story</a>
+                <NavLink to="/about">
+                <a href="!#" className="credit-text">Our Story</a>
+                </NavLink>
               </li>
               <li>
-                <a href="/products/all" className="credit-text">All Products</a>
+                <NavLink to="/products/all">
+                <a href="!#" className="credit-text">All Products</a>
+                </NavLink>
               </li>
               <li>
-                <a href="/events" className="credit-text">Events</a>
+                <NavLink to="/events">
+                  <a href="!#" className="credit-text">Events</a>
+                </NavLink>
               </li>
             </ul>
           </div>
@@ -35,13 +44,13 @@ const Credits = () => {
             <h5 className="text-uppercase">Social</h5>
             <ul className="list-unstyled">
               <li>
-                <a href="#!" className="credit-text">Instagram</a>
+                <a href="!#" className="credit-text">Instagram</a>
               </li>
               <li>
-                <a href="#!" className="credit-text">Twitter</a>
+                <a href="!#" className="credit-text">Twitter</a>
               </li>
               <li>
-                <a href="#!" className="credit-text">Facebook</a>
+                <a href="!#" className="credit-text">Facebook</a>
               </li>
             </ul>
           </div>
@@ -54,4 +63,4 @@ const Credits = () => {
   )
 }
 
-export default Credits
+export default withRouter(Credits)

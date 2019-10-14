@@ -1,18 +1,19 @@
 import React, { Component } from 'react';
-import { fetchUsers, loginUser, createUser } from '../actions/userAction.js';
+import { signupUser } from '../actions/userAction.js';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { withRouter, Redirect } from 'react-router';
 
 class Signup extends Component {
 
   state = {
+    name: "",
     username: "",
-    email: ""
+    password: "",
+    confirmpassword: "",
+    isSignedUp: false
   }
 
-  componentDidMount() {
-    this.props.fetchUsers()
-  }
 
   handleChange = (e) => {
     this.setState({ [e.target.name]: e.target.value })
@@ -20,27 +21,27 @@ class Signup extends Component {
 
   signupSubmit = (e) => {
     e.preventDefault()
-    const user = {
-      username: this.state.username,
-      email: this.state.email,
-    }
-    const signupName = this.props.usersArray.find(user => {
-      return user.username === this.state.username
-    })
-    if (!signupName) {
-      this.props.createUser(user)
+    if (this.state.password === this.state.confirmpassword) {
+      this.props.signupUser(this.state.name, this.state.username, this.state.password)
+      this.setState({ username: "", password: "", confirmpassword: "" })
     }
     else {
-      alert("Username is taken.")
+      alert("Passwords do not match")
     }
   }
 
   render() {
-    return (
+      return this.props.loggedIn ? <Redirect to="/" /> : (
       <div className="login-outter">
         <div className="login-inner">
           <form onSubmit={this.signupSubmit}>
             <h1>Signup</h1>
+            <div className="form-group row">
+              <label className="col-sm-2 col-form-label">Name</label>
+              <div className="col-sm-10">
+                <input onChange={this.handleChange} name="name" type="text" className="form-control" id="inputname" placeholder="Your name" />
+              </div>
+            </div>
             <div className="form-group row">
               <label className="col-sm-2 col-form-label">Username</label>
               <div className="col-sm-10">
@@ -48,9 +49,15 @@ class Signup extends Component {
               </div>
             </div>
             <div className="form-group row">
-              <label className="col-sm-2 col-form-label">Email</label>
+              <label className="col-sm-2 col-form-label">Password</label>
               <div className="col-sm-10">
-                <input onChange={this.handleChange} name="email" type="text" className="form-control" id="inputemail" placeholder="Email" />
+                <input onChange={this.handleChange} name="password" type="password" className="form-control" id="inputpassword" placeholder="Password" />
+              </div>
+            </div>
+            <div className="form-group row">
+              <label className="col-sm-2 col-form-label">Confirm password</label>
+              <div className="col-sm-10">
+                <input onChange={this.handleChange} name="confirmpassword" type="password" className="form-control" id="inputconfirmpassword" placeholder="Password" />
               </div>
             </div>
             <div className="form-group row">
@@ -66,14 +73,14 @@ class Signup extends Component {
 }
 
 Signup.propTypes = {
-  fetchUsers: PropTypes.func.isRequired,
-  loginUser: PropTypes.func.isRequired,
-  createUser: PropTypes.func.isRequired,
-  usersArray: PropTypes.array.isRequired
+  signupUser: PropTypes.func.isRequired,
 }
 
 const mapStateToProps = state => ({
-  usersArray: state.users.users
+  authenticatingUser: state.users.authenticatingUser,
+  failedLogin: state.users.failedLogin,
+  error: state.users.error,
+  loggedIn: state.users.loggedIn
 })
 
-export default connect(mapStateToProps, { loginUser, fetchUsers, createUser })(Signup)
+export default withRouter(connect(mapStateToProps, { signupUser })(Signup))

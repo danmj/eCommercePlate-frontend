@@ -1,18 +1,40 @@
-import { FETCH_USERS } from '../actions/types';
+import { SET_CURRENT_USER, AUTHENTICATING_USER, LOGOUT_USER, FAILED_LOGIN } from '../actions/types';
 
 const initialState = {
-  users: [],
+  user: null,
+  loggedIn: false,
+  authenticatingUser: false,
+  failedLogin: false,
+  error: null
 }
 
-// FETCH_PRODUCTS fetches the products data from the database and stores it in the 'items' state
 export default function(state = initialState, action) {
-  switch(action.type) {
-    case FETCH_USERS:
+  switch (action.type) {
+    case SET_CURRENT_USER:
       return {
         ...state,
-        users: action.payload
-      };
-      
+        user: action.payload,
+        loggedIn: true,
+        authenticatingUser: false
+      }
+
+    case AUTHENTICATING_USER:
+      return {
+        ...state,
+        authenticatingUser: true
+      }
+
+    case LOGOUT_USER:
+      return initialState
+
+    case FAILED_LOGIN:
+      return {
+        ...state,
+        failedLogin: true,
+        error: action.payload,
+        authenticatingUser: false
+      }
+
     default:
       return state
   }
