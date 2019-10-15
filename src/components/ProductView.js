@@ -4,8 +4,8 @@ import React, { useState, useEffect } from 'react';
 import ReactImageMagnify from 'react-image-magnify';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { postCartitem, updateCartitem } from '../actions/cartitemAction.js';
-import { fetchCart } from '../actions/cartitemAction.js';
+import { fetchCart, postCartitem, updateCartitem } from '../actions/cartitemAction.js';
+
 
 const ProductView = (props) => {
 
@@ -17,8 +17,9 @@ const ProductView = (props) => {
 
   // Handles the 'close' button by returning user to previous page
   const backClickHandler = () => {
-    props.fetchCart(props.user)
-    window.history.back()
+    // props.fetchCart(props.user)
+    // window.history.back()
+    console.log(props.cart)
   }
 
   // Allows esc key to have the same effect as the 'close' button
@@ -33,7 +34,7 @@ const ProductView = (props) => {
 
   // Effect hook to add listener for esc feature
   useEffect(() => {
-    // props.fetchCart(currentUser)
+    props.fetchCart(props.user)
     document.addEventListener("keydown", escFunction, false);
     return () => {
       document.removeEventListener("keydown", escFunction, false);
