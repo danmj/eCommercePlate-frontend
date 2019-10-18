@@ -17,7 +17,7 @@ const ProductView = (props) => {
 
   // Handles the 'close' button by returning user to previous page
   const backClickHandler = () => {
-    props.fetchCart(currentUser)
+    props.fetchCart(props.user)
     window.history.back()
   }
 
@@ -33,7 +33,7 @@ const ProductView = (props) => {
 
   // Effect hook to add listener for esc feature
   useEffect(() => {
-    props.fetchCart(currentUser)
+    props.fetchCart(props.user)
     document.addEventListener("keydown", escFunction, false);
     return () => {
       document.removeEventListener("keydown", escFunction, false);
@@ -43,7 +43,7 @@ const ProductView = (props) => {
   // Reads the quantity figure from the dropdown input
   const quantityChangeReader = (e) => {
     setQuantity(e.target.value)
-    props.fetchCart(currentUser)
+    props.fetchCart(props.user)
     setButtonMessage("Add to cart")
   }
 
@@ -65,7 +65,7 @@ const ProductView = (props) => {
           return obj.name === props.products[props.match.params.productId].name
         })
         itemToUpdate.quantity += Number(quantity)
-        props.updateCartitem(itemToUpdate, currentUser)
+        props.updateCartitem(itemToUpdate, props.user)
         setButtonMessage("Added to cart")
       }
       // If the item does not already exist in the cart, then create a new cartitem
