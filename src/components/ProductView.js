@@ -9,17 +9,16 @@ import { fetchCart, postCartitem, updateCartitem } from '../actions/cartitemActi
 
 const ProductView = (props) => {
 
-  // const userString = localStorage.getItem("user")
-  // const currentUser = JSON.parse(userString)
+  const userString = localStorage.getItem("user")
+  const currentUser = JSON.parse(userString)
 
   const [buttonMessage, setButtonMessage] = useState("Add to cart");
   const [quantity, setQuantity] = useState(0);
 
   // Handles the 'close' button by returning user to previous page
   const backClickHandler = () => {
-    // props.fetchCart(props.user)
-    // window.history.back()
-    console.log(props.cart)
+    props.fetchCart(currentUser)
+    window.history.back()
   }
 
   // Allows esc key to have the same effect as the 'close' button
@@ -34,7 +33,7 @@ const ProductView = (props) => {
 
   // Effect hook to add listener for esc feature
   useEffect(() => {
-    props.fetchCart(props.user)
+    props.fetchCart(currentUser)
     document.addEventListener("keydown", escFunction, false);
     return () => {
       document.removeEventListener("keydown", escFunction, false);
@@ -44,7 +43,7 @@ const ProductView = (props) => {
   // Reads the quantity figure from the dropdown input
   const quantityChangeReader = (e) => {
     setQuantity(e.target.value)
-    props.fetchCart(props.user)
+    props.fetchCart(currentUser)
     setButtonMessage("Add to cart")
   }
 
@@ -66,7 +65,7 @@ const ProductView = (props) => {
           return obj.name === props.products[props.match.params.productId].name
         })
         itemToUpdate.quantity += Number(quantity)
-        props.updateCartitem(itemToUpdate, props.user)
+        props.updateCartitem(itemToUpdate, currentUser)
         setButtonMessage("Added to cart")
       }
       // If the item does not already exist in the cart, then create a new cartitem
@@ -79,7 +78,7 @@ const ProductView = (props) => {
           price: props.products[props.match.params.productId].price,
           photo: props.products[props.match.params.productId].photos[1].url,
         }
-        props.postCartitem(cartitem, props.user)
+        props.postCartitem(cartitem, currentUser)
         setButtonMessage("Added to cart")
       }
     }
