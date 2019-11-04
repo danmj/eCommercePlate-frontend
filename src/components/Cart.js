@@ -9,16 +9,10 @@ import { fetchCart } from '../actions/cartitemAction.js';
 
 const Cart = (props) => {
 
-  // const userString = localStorage.getItem("user")
-  // const currentUser = JSON.parse(userString)
-
-  // Receives the cart items data
   useEffect(() => {
     props.fetchCart(props.user)
   }, [])
 
-  // Creates each (CartItem) row in the cart table
-  // If the cart is empty it will display the empty message.
   const createCartItem = () => {
     if(props.cart.length > 0) {
       return props.cart.map((cartObj) =>
