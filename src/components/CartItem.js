@@ -7,9 +7,6 @@ import { deleteCartitem, updateCartitem } from '../actions/cartitemAction.js';
 
 const CartItem = (props) => {
 
-  // const userString = localStorage.getItem("user")
-  // const currentUser = JSON.parse(userString)
-
   // Quantity figure for internal use in changing updatingItem
   const [inputQuantity, setInputQuantity] = useState(props.cartObj.quantity);
 
